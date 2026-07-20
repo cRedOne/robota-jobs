@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robota.ua — Вакансії</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a1a2e;color:#e0e0e0;padding:20px;max-width:1200px;margin:0 auto}
+h1{color:#a0a0c0;margin-bottom:5px;font-size:28px}
+.subtitle{color:#888;margin-bottom:20px;font-size:14px}
+.stats{display:flex;gap:15px;margin-bottom:20px;flex-wrap:wrap}
+.stat{background:#252540;padding:12px 20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.2);font-size:14px}
+.stat b{color:#a0a0c0;font-size:18px}
+.stat.red b{color:#e94560}
+.stat.green b{color:#4ecca3}
+.stat.gray b{color:#666}
+.filters{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.filters button{padding:8px 16px;border:2px solid #333;border-radius:8px;background:#252540;cursor:pointer;font-size:13px;font-weight:500;color:#aaa;transition:all 0.2s}
+.filters button:hover{border-color:#a0a0c0;color:#a0a0c0}
+.filters button.active{background:#a0a0c0;color:#1a1a2e;border-color:#a0a0c0}
+.job-card{background:#252540;border-radius:12px;padding:18px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,0.2);border-left:4px solid #4ecca3;display:flex;justify-content:space-between;align-items:flex-start;transition:all 0.2s}
+.job-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.3);background:#2a2a4a}
+.job-card.red-zone{border-left-color:#e94560;background:#2a2030}
+.job-card.blacklisted{border-left-color:#555;background:#222;opacity:0.4}
+.job-info{flex:1}
+.job-title{font-size:16px;font-weight:600;color:#e0e0e0;margin-bottom:4px}
+.job-salary{color:#4ecca3;font-size:15px;font-weight:600}
+.job-company{color:#888;font-size:13px;margin-top:3px}
+.job-page{color:#666;font-size:11px;margin-top:2px}
+.job-actions{display:flex;gap:6px;margin-left:15px}
+.btn{padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:500;transition:all 0.2s}
+.btn-blacklist{background:#3a2030;color:#e94560}
+.btn-blacklist:hover{background:#4a2040}
+.btn-remove{background:#333;color:#888}
+.btn-remove:hover{background:#444}
+.btn-restore{background:#1a3a2a;color:#4ecca3}
+.btn-restore:hover{background:#1a4a3a}
+.empty{text-align:center;padding:40px;color:#666;font-size:16px}
+.search{width:100%;padding:12px 16px;border:2px solid #333;border-radius:10px;font-size:14px;margin-bottom:20px;outline:none;background:#252540;color:#e0e0e0}
+.search:focus{border-color:#a0a0c0}
+.search::placeholder{color:#666}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.updated{color:#666;font-size:12px}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>Robota.ua — Вакансії</h1>
+<span class="updated">Оновлено: 20.07.2026</span>
+</div>
+<p class="subtitle">Віддалена робота | Автозбір та фільтрація</p>
+
+<div class="stats">
+<div class="stat green"><b>129</b> чистих</div>
+<div class="stat red"><b>63</b> червона зона</div>
+<div class="stat gray"><b>0</b> чорний список</div>
+</div>
+
+<input type="text" class="search" placeholder="Пошук за назвою, компанією..." oninput="filterJobs()">
+
+<div class="filters">
+<button class="active" onclick="setFilter('clean')">Чисті</button>
+<button onclick="setFilter('all')">Всі</button>
+<button onclick="setFilter('red')">Червоні</button>
+<button onclick="setFilter('blacklisted')">Чорний список</button>
+</div>
+
+<div id="jobs"></div>
+
+<script>
+const jobs = [{"title":"Менеджер з продажу зі знанням англійської мови","salary":"70 000 — 150 000 ₴","company":"QRS Europe","page":1,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:21.549Z"},{"title":"Вчитель англійської мови","salary":"15 000 — 30 000 ₴","company":"AntiSchool Online","page":1,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"Викладач англійської мови для дітей","salary":"15 000 — 30 000 ₴","company":"AntiSchool Online","page":1,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"Менеджер вступних занять з математики","salary":"15 000 — 30 000 ₴","company":"AntiSchool Online","page":1,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"Репетитор англійської мови (вечір)","salary":"20 000 — 45 000 ₴","company":"JustSchool","page":1,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"Менеджер з продажу","salary":"25 000 — 40 000 ₴","company":"HR-Service","page":1,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"Менеджер з підбору освітніх курсів","salary":"16 000 — 40 000 ₴","company":"JustSchool","page":1,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"Менеджер по роботі з клієнтами (USA)","salary":"44 000 — 52 000 ₴","company":"Supplax","page":2,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:25.963Z"},{"title":"Sales manager в онлайн-школу англійської (гарячі заявки клієнтів)","salary":"35 000 — 75 000 ₴","company":"Study Less","page":2,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:25.963Z"},{"title":"Вантажник на маршрут","salary":"31 000 — 34 000 ₴","company":"Чиста Вода","page":2,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:51:25.963Z"},{"title":"Marketing manager B2C","salary":"45 000 — 50 000 ₴","company":"Englishdom","page":2,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:25.963Z"},{"title":"Customer support (remote)","salary":"45 000 — 55 000 ₴","company":"TechSupport UA","page":3,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:30.123Z"},{"title":"Оператор call-центру","salary":"22 000 — 60 000 ₴","company":"CallHub","page":3,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:30.123Z"},{"title":"Маркетолог","salary":"40 000 — 70 000 ₴","company":"Digital Agency","page":4,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:35.456Z"},{"title":"Менеджер з продажу","salary":"25 000 — 120 000 ₴","company":"Sales Pro","page":5,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:40.789Z"}];
+let currentFilter = 'clean';
+
+function getBlacklist() {
+  try { return JSON.parse(localStorage.getItem('blacklist') || '[]'); } catch { return []; }
+}
+
+function setBlacklist(bl) {
+  localStorage.setItem('blacklist', JSON.stringify(bl));
+}
+
+function isBlacklisted(company) {
+  return getBlacklist().includes(company);
+}
+
+function addToBlacklist(company) {
+  const bl = getBlacklist();
+  if (!bl.includes(company)) { bl.push(company); setBlacklist(bl); }
+  renderJobs();
+}
+
+function removeFromBlacklist(company) {
+  let bl = getBlacklist();
+  bl = bl.filter(c => c !== company);
+  setBlacklist(bl);
+  renderJobs();
+}
+
+function setFilter(f) {
+  currentFilter = f;
+  document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderJobs();
+}
+
+function filterJobs() {
+  renderJobs();
+}
+
+function renderJobs() {
+  const search = document.querySelector('.search').value.toLowerCase();
+  const bl = getBlacklist();
+  
+  let filtered = jobs.filter(j => {
+    if (currentFilter === 'clean' && (j.red_zone || bl.includes(j.company))) return false;
+    if (currentFilter === 'red' && !j.red_zone) return false;
+    if (currentFilter === 'blacklisted' && !bl.includes(j.company)) return false;
+    if (search && !j.title.toLowerCase().includes(search) && !j.company.toLowerCase().includes(search)) return false;
+    return true;
+  });
+
+  const container = document.getElementById('jobs');
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="empty">Нічого не знайдено</div>';
+    return;
+  }
+
+  container.innerHTML = filtered.map((j, i) => {
+    const bl = isBlacklisted(j.company);
+    const cls = j.red_zone ? 'red-zone' : (bl ? 'blacklisted' : '');
+    const btn = bl
+      ? '<button class="btn btn-restore" onclick="removeFromBlacklist(\'' + j.company + '\')">✓ Відновити</button>'
+      : '<button class="btn btn-blacklist" onclick="addToBlacklist(\'' + j.company + '\')">✗ Чорний список</button>';
+    
+    return '<div class="job-card ' + cls + '">'
+      + '<div class="job-info">'
+      + '<div class="job-title">' + j.title + '</div>'
+      + '<div class="job-salary">' + (j.salary || 'Не вказана') + '</div>'
+      + '<div class="job-company">' + (j.company || 'Не вказана') + '</div>'
+      + '<div class="job-page">Сторінка ' + (j.page || '?') + '</div>'
+      + '</div>'
+      + '<div class="job-actions">' + btn + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+renderJobs();
+</script>
+</body>
+</html>
