@@ -1,9 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="uk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Robota.ua — Вакансії</title>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Robota.ua — Вакансії</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a1a2e;color:#e0e0e0;padding:20px;max-width:1200px;margin:0 auto}
@@ -40,115 +35,1050 @@ h1{color:#a0a0c0;margin-bottom:5px;font-size:28px}
 .search{width:100%;padding:12px 16px;border:2px solid #333;border-radius:10px;font-size:14px;margin-bottom:20px;outline:none;background:#252540;color:#e0e0e0}
 .search:focus{border-color:#a0a0c0}
 .search::placeholder{color:#666}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.updated{color:#666;font-size:12px}
-.count-badge{background:#252540;padding:4px 10px;border-radius:15px;font-size:12px;color:#888;margin-left:10px}
-</style>
-</head>
-<body>
-<div class="header">
-<h1>Robota.ua — Вакансії <span class="count-badge" id="showing"></span></h1>
-<span class="updated">Оновлено: 20.07.2026 20:45</span>
-</div>
-<p class="subtitle">Віддалена робота | scheduleIds=3 | Автозбір та фільтрація</p>
-
+</style></head><body>
+<h1>Robota.ua — Вакансії</h1>
 <div class="stats">
-<div class="stat green"><b></b> чистих</div>
-<div class="stat red"><b></b> червона зона</div>
-<div class="stat gray"><b></b> чорний список</div>
+<div class="stat"><b>192</b> всього</div>
+<div class="stat" style="color:#4ecca3"><b>129</b> чистих</div>
+<div class="stat" style="color:#e94560"><b>63</b> червона зона</div>
+<div class="stat" style="color:#666"><b>0</b> чорний список</div>
 </div>
-
-<input type="text" class="search" placeholder="Пошук за назвою, компанією..." oninput="filterJobs()">
-
 <div class="filters">
-<button class="active" onclick="setFilter('clean',this)">Чисті ()</button>
-<button onclick="setFilter('all',this)">Всі (192)</button>
-<button onclick="setFilter('red',this)">Червоні ()</button>
-<button onclick="setFilter('blacklisted',this)">Чорний список ()</button>
+<a href="jobs-view.html?filter=clean">Чисті (129)</a>
+<a href="jobs-view.html?filter=all">Всі (192)</a>
+<a href="jobs-view.html?filter=red">Червоні (63)</a>
+<a href="jobs-view.html?filter=blacklisted">Чорний список (0)</a>
 </div>
-
-<div id="jobs"></div>
-
-<script>
-const jobs = [{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ Ð·Ñ– Ð·Ð½Ð°Ð½Ð½ÑÐ¼ Ð°Ð½Ð³Ð»Ñ–Ð¹ÑÑŒÐºÐ¾Ñ— Ð¼Ð¾Ð²Ð¸","salary":"70 000 â€” 150 000 â‚´","company":"QRS Europe","page":1,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:21.549Z"},{"title":"Ð’Ñ‡Ð¸Ñ‚ÐµÐ»ÑŒ Ð°Ð½Ð³Ð»Ñ–Ð¹ÑÑŒÐºÐ¾Ñ— Ð¼Ð¾Ð²Ð¸","salary":"15 000 â€” 30 000 â‚´","company":"AntiSchool Online","page":1,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"Ð’Ð¸ÐºÐ»Ð°Ð´Ð°Ñ‡ Ð°Ð½Ð³Ð»Ñ–Ð¹ÑÑŒÐºÐ¾Ñ— Ð¼Ð¾Ð²Ð¸ Ð´Ð»Ñ Ð´Ñ–Ñ‚ÐµÐ¹","salary":"15 000 â€” 30 000 â‚´","company":"AntiSchool Online","page":1,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð²ÑÑ‚ÑƒÐ¿Ð½Ð¸Ñ… Ð·Ð°Ð½ÑÑ‚ÑŒ Ð· Ð¼Ð°Ñ‚ÐµÐ¼Ð°Ñ‚Ð¸ÐºÐ¸","salary":"15 000 â€” 30 000 â‚´","company":"AntiSchool Online","page":1,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"Ð ÐµÐ¿ÐµÑ‚Ð¸Ñ‚Ð¾Ñ€ Ð°Ð½Ð³Ð»Ñ–Ð¹ÑÑŒÐºÐ¾Ñ— Ð¼Ð¾Ð²Ð¸ (Ð²ÐµÑ‡Ñ–Ñ€)","salary":"20 000 â€” 45 000 â‚´","company":"JustSchool","page":1,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ","salary":"25 000 â€” 40 000 â‚´","company":"HR-Service","page":1,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ–Ð´Ð±Ð¾Ñ€Ñƒ Ð¾ÑÐ²Ñ–Ñ‚Ð½Ñ–Ñ… ÐºÑƒÑ€ÑÑ–Ð²","salary":"16 000 â€” 40 000 â‚´","company":"JustSchool","page":1,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:21.570Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð¿Ð¾ Ñ€Ð¾Ð±Ð¾Ñ‚Ñ– Ð· ÐºÐ»Ñ–Ñ”Ð½Ñ‚Ð°Ð¼Ð¸ (USA)","salary":"44 000 â€” 52 000 â‚´","company":"Supplax","page":2,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:25.963Z"},{"title":"Sales manager Ð² Ð¾Ð½Ð»Ð°Ð¹Ð½-ÑˆÐºÐ¾Ð»Ñƒ Ð°Ð½Ð³Ð»Ñ–Ð¹ÑÑŒÐºÐ¾Ñ— (Ð³Ð°Ñ€ÑÑ‡Ñ– Ð·Ð°ÑÐ²ÐºÐ¸ ÐºÐ»Ñ–Ñ”Ð½Ñ‚Ñ–Ð²)","salary":"35 000 â€” 75 000 â‚´","company":"Study Less","page":2,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:25.963Z"},{"title":"Ð’Ð°Ð½Ñ‚Ð°Ð¶Ð½Ð¸Ðº Ð½Ð° Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚","salary":"31 000 â€” 34 000 â‚´","company":"Ð§Ð¸ÑÑ‚Ð° Ð’Ð¾Ð´Ð°","page":2,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:51:25.963Z"},{"title":"Marketing manager B2C","salary":"45 000 â€” 50 000 â‚´","company":"Englishdom","page":2,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:25.963Z"},{"title":"Customer support manager (ENG)","salary":"45 000 â€” 55 000 â‚´","company":"King Group","page":2,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:25.963Z"},{"title":"Sales Manager (medical services)","salary":"65 000 â€” 95 000 â‚´","company":"Bookimed Limited","page":2,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:25.963Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€ÐµÐ·ÐµÐ½Ñ‚Ð°Ñ†Ñ–Ñ— Ñ‚Ð° Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ ÐºÑƒÑ€ÑÑ–Ð²","salary":"16 000 â€” 40 000 â‚´","company":"JustSchool","page":3,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:30.389Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ (Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€)","salary":"25 000 â€” 60 000 â‚´","company":"Ð¥Ð°Ð»Ð°Ñ‚Ð°Ñ… Ð”.Ð¡., Ð¤ÐžÐŸ","page":3,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:30.389Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ Ñ‚Ð° Ñ€ÐµÑ”ÑÑ‚Ñ€Ð°Ñ†Ñ–Ñ—","salary":"14 500 â€” 24 500 â‚´","company":"Ð•ÐšÐ¡ÐŸÐ Ð•Ð¡ Ð›Ð†ÐÐ†Ð¯, Ð¢ÐžÐ’","page":3,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:30.389Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ call-Ñ†ÐµÐ½Ñ‚Ñ€Ñƒ (Ð·Ð°Ð¿Ð¸Ñ Ð½Ð° Ð²ÑÑ‚ÑƒÐ¿Ð½Ñ– ÑƒÑ€Ð¾ÐºÐ¸)","salary":"17 000 â€” 26 000 â‚´","company":"","page":3,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:30.389Z"},{"title":"ÐšÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ñ–Ð¹Ð½Ð¸Ð¹ Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€ / Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ñ–Ð· Ñ€Ð¾Ð·Ð²Ð¸Ñ‚ÐºÑƒ Ð¿Ð°Ñ€Ñ‚Ð½ÐµÑ€ÑÑŒÐºÐ¾Ð³Ð¾ Ð°ÑÐ¾Ñ€Ñ‚Ð¸Ð¼ÐµÐ½Ñ‚Ñƒ","salary":"30 000 â€” 150 000 â‚´","company":"Ð†ÐœÐ•ÐšÐ¡ ÐœÐÐšÐ¡","page":4,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:34.680Z"},{"title":"Sales Team Lead","salary":"65 000 â€” 90 000 â‚´","company":"ÐŸÑ€Ð°ÑÐ¾Ð»Ð¾Ð² Ñ‚Ð° Ð¿Ð°Ñ€Ñ‚Ð½ÐµÑ€Ð¸, Ð®Ñ€Ð¸Ð´Ð¸Ñ‡Ð½Ð° ÐºÐ¾Ð¼Ð¿Ð°Ð½Ñ–Ñ","page":4,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:34.680Z"},{"title":"ÐžÐ¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ ÐºÐ¾Ð½Ñ‚Ð°ÐºÑ‚ Ñ†ÐµÐ½Ñ‚Ñ€Ñƒ / ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ","salary":"18 000 â€” 40 000 â‚´","company":"Sales Pulse","page":5,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:38.980Z"},{"title":"Digital-ÐºÐ¾Ð¿Ñ–Ñ€Ð°Ð¹Ñ‚ÐµÑ€ (-ÐºÐ°)","salary":"27 000 â€” 45 000 â‚´","company":"Industrial Media","page":5,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:38.980Z"},{"title":"Head of Traffic/ Digital Marketing","salary":"80 000 â€” 120 000 â‚´","company":"ÐŸÑ€Ð°ÑÐ¾Ð»Ð¾Ð² Ñ‚Ð° Ð¿Ð°Ñ€Ñ‚Ð½ÐµÑ€Ð¸, Ð®Ñ€Ð¸Ð´Ð¸Ñ‡Ð½Ð° ÐºÐ¾Ð¼Ð¿Ð°Ð½Ñ–Ñ","page":5,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:38.980Z"},{"title":"Oracle-Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ñ–ÑÑ‚","salary":"50 000 â€” 100 000 â‚´","company":"Ð£ÐšÐ .ÐŸÐ•Ð™, Ð¢ÐžÐ’","page":5,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:38.980Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹-Ð¼Ñ–Ð¶Ð½Ð°Ñ€Ð¾Ð´Ð½Ð¸Ðº ÐºÐ°Ñ‚. Ð¡Ð• (Ñ‚ÐµÐ½Ñ‚Ð¸, Ð±Ñ–Ñ‚ÑƒÐ¼, Ð¿Ð°Ð»Ð¸Ð²Ð¾)","salary":"60 000 â€” 95 000 â‚´","company":"Ð¢Ñ€Ð°Ð½ÑÐºÐ¾Ð¼Ð³Ñ€ÑƒÐ¿, Ð¢ÐžÐ’","page":6,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:51:43.272Z"},{"title":"ÐšÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ð¾Ñ€ Ð±ÐµÐº-Ð¾Ñ„Ñ–ÑÑƒ Ð²Ñ–Ð´Ð´Ñ–Ð»Ñƒ Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñ–Ð²","salary":"35 000 â€” 45 000 â‚´","company":"Ð‘Ñ€Ð¾ÐºÐ±Ñ€Ñ–Ð´Ð¶","page":6,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:43.272Z"},{"title":"ÐÐ³ÐµÐ½Ñ‚ Ð· Ð¾Ð±ÑÐ»ÑƒÐ³Ð¾Ð²ÑƒÐ²Ð°Ð½Ð½Ñ ÐºÐ»Ñ–Ñ”Ð½Ñ‚Ñ–Ð² Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½Ð¾Ð¼ (Ð²Ñ…Ñ–Ð´Ð½Ð° Ð»Ñ–Ð½Ñ–Ñ)","salary":"28 843 â€” 33 004 â‚´","company":"ÐŸÑ€Ð¸Ð²Ð°Ñ‚Ð‘Ð°Ð½Ðº","page":7,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:47.550Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ Ñ–Ð½Ñ‚ÐµÑ€Ð½ÐµÑ‚-Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ñƒ","salary":"25 000 â€” 40 000 â‚´","company":"Benefit","page":8,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:51.834Z"},{"title":"Ð¡Ð¿ÐµÑ†Ñ–Ð°Ð»Ñ–ÑÑ‚ Ñ‚ÐµÑ…Ð½Ñ–Ñ‡Ð½Ð¾Ñ— Ð¿Ñ–Ð´Ñ‚Ñ€Ð¸Ð¼ÐºÐ¸ / Helpdesk Enginee","salary":"30 000 â€” 45 000 â‚´","company":"Tax Easy, ÐšÐ°Ð´Ñ€Ð¾Ð²Ðµ Ð°Ð³ÐµÐ½ÑÑ‚Ð²Ð¾","page":9,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:57.008Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ Ð°Ð²Ñ‚Ð¾Ð·Ð°Ð¿Ñ‡Ð°ÑÑ‚Ð¸Ð½ Japan-cars.com.ua","salary":"45 000 â€” 85 000 â‚´","company":"JAPAN-CARS.com.ua","page":9,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:51:57.008Z"},{"title":"Product, ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ñ–Ð¹Ð½Ð¸Ð¹ Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€","salary":"30 000 â€” 50 000 â‚´","company":"INTBOARD","page":10,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:01.303Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð½Ð° Ð°Ð²Ñ‚Ð¾ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ñ–Ñ— (Uklon | Ñ‚Ð°ÐºÑÑ– | Ð»Ñ–Ñ†ÐµÐ½Ð·Ñ–Ñ)","salary":"30 000 â€” 40 000 â‚´","company":"DriveMe","page":10,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:52:01.303Z"},{"title":"Ð¢ÐµÑÑ‚ÑƒÐ²Ð°Ð»ÑŒÐ½Ð¸Ðº ÐŸÐž (Ð· Ñ€ÐµÐ°Ð»ÑŒÐ½Ð¸Ð¼ Ð´Ð¾ÑÐ²Ñ–Ð´Ð¾Ð¼)","salary":"25 000 â€” 40 000 â‚´","company":"Ð£ÐšÐ .ÐŸÐ•Ð™, Ð¢ÐžÐ’","page":11,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:05.598Z"},{"title":"Ð ÐµÐºÑ€ÑƒÑ‚ÐµÑ€ Ð· Ð¿Ñ–Ð´Ð±Ð¾Ñ€Ñƒ Ð²Ð¸ÐºÐ»Ð°Ð´Ð°Ñ‡Ñ–Ð² (IT)","salary":"27 000 â€” 35 000 â‚´","company":"GoIT","page":11,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:52:05.598Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ñ–Ð½Ñ‚ÐµÑ€Ð½ÐµÑ‚-Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ñƒ","salary":"25 000 â€” 35 000 â‚´","company":"Ð¤ÐžÐŸ Ð‘Ð¾Ð¹Ð²Ð°Ð»ÐµÐ½ÐºÐ¾ Ð’. Ð®.","page":12,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:11.203Z"},{"title":"Sales-Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€ (Ð¾ÑÐ²Ñ–Ñ‚Ð½Ñ– Ð¿Ð¾ÑÐ»ÑƒÐ³Ð¸)","salary":"60 000 â€” 120 000 â‚´","company":"ÐšÐ¾Ð½Ñ Ð½Ð° Ð‘Ñ–$","page":12,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:11.203Z"},{"title":"4D Construction Project Scheduler","salary":"60 000 â€” 100 000 â‚´","company":"Ehvert","page":13,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:15.507Z"},{"title":"Team lead marketing (Yelp, USA)","salary":"50 000 â€” 60 000 â‚´","company":"Supplax","page":13,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:15.507Z"},{"title":"Ð¤Ð°Ñ…Ñ–Ð²ÐµÑ†ÑŒ Ð¿Ð¾ Ñ€Ð¾Ð±Ð¾Ñ‚Ñ– Ð· Ð·Ð°Ð±Ð¾Ñ€Ð³Ð¾Ð²Ð°Ð½Ñ–ÑÑ‚ÑŽ (Hard Collection/31-75 Ð´Ð½Ñ–Ð²)","salary":"50 000 â€” 90 000 â‚´","company":"SelfieCredit","page":13,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:52:15.507Z"},{"title":"Ð¤Ð°Ñ…Ñ–Ð²ÐµÑ†ÑŒ Ð· Ñ‚ÐµÐ»ÐµÐ¼Ð°Ñ€ÐºÐµÑ‚Ð¸Ð½Ð³Ñƒ","salary":"30 000 â€” 35 000 â‚´","company":"SelfieCredit","page":14,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:19.795Z"},{"title":"PRODUCT OWNER (Affiliate marketing)","salary":"80 000 â€” 85 000 â‚´","company":"DMND","page":14,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:19.795Z"},{"title":"Ð¢Ð¾Ñ€Ð³Ð¾Ð²Ð¸Ð¹ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð½Ð¸Ðº Ð· Ð°Ð²Ñ‚Ð¾ (Ð·Ð¾Ð¾Ñ‚Ð¾Ð²Ð°Ñ€Ð¸)","salary":"35 000 â€” 50 000 â‚´","company":"YEDNISTâ€™ GROUP","page":14,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:52:19.795Z"},{"title":"ÐŸÑ€Ð¾Ð³Ñ€Ð°Ð¼Ñ–ÑÑ‚ BAS, BAF Ñƒ Ð Ñ–Ð²Ð½Ðµ","salary":"60 000 â€” 80 000 â‚´","company":"Atlantmarket","page":15,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:24.305Z"},{"title":"Ð”ÐµÐ·Ñ–Ð½Ñ„ÐµÐºÑ‚Ð¾Ñ€, ÑÐ¿ÐµÑ†Ñ–Ð°Ð»Ñ–ÑÑ‚ Ð· ÐŸÐ•Ð¡Ð¢ ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»ÑŽ (Ð²Ð»Ð°ÑÐ½Ðµ Ð°Ð²Ñ‚Ð¾)","salary":"30 000 â€” 45 000 â‚´","company":"Ð¡Ñ‚Ð¾Ð¿! ÐšÑƒÐºÐ°Ñ€Ð°Ñ‡Ð°, Ð¢ÐžÐ’","page":16,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:52:29.425Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð¿Ð¾ Ð·Ð°ÐºÑƒÐ¿ÐºÐ°Ð¼","salary":"30 000 â€” 40 000 â‚´","company":"ÐÐžÐ¢Ð Ð¢Ð Ð•Ð™Ð”, Ð¢ÐžÐ’","page":16,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:29.425Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ ÑÑƒÐ¿Ñ€Ð¾Ð²Ð¾Ð´Ñƒ Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñ–Ð² (B2B, ÐµÐ½ÐµÑ€Ð³ÐµÑ‚Ð¸Ñ‡Ð½Ðµ Ð¾Ð±Ð»Ð°Ð´Ð½Ð°Ð½Ð½Ñ)","salary":"25 000 â€” 30 000 â‚´","company":"ÐÐžÐ¢Ð Ð¢Ð Ð•Ð™Ð”, Ð¢ÐžÐ’","page":16,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:29.425Z"},{"title":"ÐÑ€Ñ…Ñ–Ñ‚ÐµÐºÑ‚Ð¾Ñ€-ÐºÑ€ÐµÑÐ»ÑÑ€ (Ñ–Ð½Ñ‚ÐµÑ€\u0027Ñ”Ñ€Ð½Ñ– ÐºÑ€ÐµÑÐ»ÐµÐ½Ð½Ñ)","salary":"50 000 â€” 60 000 â‚´","company":"BORISSTUDIO","page":16,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:52:29.425Z"},{"title":"ÐÐ½Ð°Ð»Ñ–Ñ‚Ð¸Ðº (Marketing Department)","salary":"30 000 â€” 35 000 â‚´","company":"PLAMIGO","page":18,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:39.013Z"},{"title":"Ð¡Ð¿ÐµÑ†Ñ–Ð°Ð»Ñ–ÑÑ‚ Ð¿Ð¾ Ñ€Ð¾Ð±Ð¾Ñ‚Ñ– Ñ–Ð· ÐºÑ€ÐµÐ´Ð¸Ñ‚Ð½Ð¾ÑŽ Ð·Ð°Ð±Ð¾Ñ€Ð³Ð¾Ð²Ð°Ð½Ñ–ÑÑ‚ÑŽ","salary":"35 000 â€” 70 000 â‚´","company":"PROCENT","page":19,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:52:43.321Z"},{"title":"Ð¢Ð¾Ñ€Ð³Ð¾Ð²Ð¸Ð¹ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð½Ð¸Ðº Ð· Ð°Ð²Ñ‚Ð¾ (Ñ€ÑƒÑ‡Ð½Ð¸Ð¹ Ñ–Ð½ÑÑ‚Ñ€ÑƒÐ¼ÐµÐ½Ñ‚)","salary":"40 000 â€” 60 000 â‚´","company":"Unit B","page":19,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:52:43.321Z"},{"title":"ÐžÐ·Ð´Ð¾Ð±Ð»ÑŽÐ²Ð°Ñ‡","salary":"60 000 â€” 90 000 â‚´","company":"Ð”Ð¾Ð¼Ð¾Ð²Ð° ÑÐ»ÑƒÐ¶Ð±Ð°, Ð¢ÐžÐ’","page":19,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:43.321Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ (Ð’2Ð’) Ð·Ñ– Ð·Ð½Ð°Ð½Ð½ÑÐ¼ Ð½Ñ–Ð¼ÐµÑ†ÑŒÐºÐ¾Ñ— Ð°Ð±Ð¾ Ð°Ð½Ð³Ð»Ñ–Ð¹ÑÑŒÐºÐ¾Ñ— Ð¼Ð¾Ð²Ð¸","salary":"30 000 â€” 70 000 â‚´","company":"FLEXOGROUP","page":19,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:43.321Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð¼Ð¾Ð±Ñ–Ð»ÑŒÐ½Ð¾Ñ— Ð³Ñ€ÑƒÐ¿Ð¸ Ñ€ÐµÐ°Ð³ÑƒÐ²Ð°Ð½Ð½Ñ","salary":"12 000 â€” 15 000 â‚´","company":"Ð’Ð•ÐÐ‘Ð•Ð¡Ð¢, Ð¢ÐžÐ’","page":19,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:52:43.321Z"},{"title":"Ð’Ñ‡Ð¸Ñ‚ÐµÐ»ÑŒ/Ñ€ÐµÐ¿ÐµÑ‚Ð¸Ñ‚Ð¾Ñ€ Ð¼Ð°Ñ‚ÐµÐ¼Ð°Ñ‚Ð¸ÐºÐ¸ (Ð¾Ð½Ð»Ð°Ð¹Ð½)","salary":"10 000 â€” 25 000 â‚´","company":"Mathema","page":21,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:52:51.890Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ (Ð¡/Ð¡1/Ð”)","salary":"30 000 â€” 35 000 â‚´","company":"ÐŸÐ¾ÑÐ°Ð´","page":21,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:52:51.890Z"},{"title":"Digital-Ð¼Ð°Ñ€ÐºÐµÑ‚Ð¾Ð»Ð¾Ð³/Google Ads Specialist","salary":"65 000 â€” 100 000 â‚´","company":"Hay Credito","page":22,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:52:56.181Z"},{"title":"Middle SEO Specialist (iGaming)","salary":"50 000 â€” 70 000 â‚´","company":"Flint Group","page":23,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:00.466Z"},{"title":"Team Lead Seo","salary":"80 000 â€” 100 000 â‚´","company":"Flint Group","page":23,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:00.466Z"},{"title":"Ð’Ñ–Ð´ÐµÐ¾Ð¼Ð¾Ð½Ñ‚Ð°Ð¶ÐµÑ€ Ð²ÐµÑÑ–Ð»ÑŒÐ½Ð¸Ñ… Ñ„Ñ–Ð»ÑŒÐ¼Ñ–Ð²","salary":"20 000 â€” 50 000 â‚´","company":"Ð‘Ñ€Ð°Ð¹Ð´ Ð“Ñ€ÑƒÐ¼ Ð’Ñ–Ð´ÐµÐ¾","page":23,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:00.466Z"},{"title":"Ð¡Ñ‚Ñ–ÐºÐµÑ€ÑƒÐ²Ð°Ð»ÑŒÐ½Ð¸Ðº-ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚ÑƒÐ²Ð°Ð»ÑŒÐ½Ð¸Ðº","salary":"22 000 â€” 27 000 â‚´","company":"ÐœÑ–Ð³Ð¾Ñ‚Ñ–Ð½ Ð¤.Ð¡,, Ð¤ÐžÐŸ","page":23,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:00.466Z"},{"title":"ÐÐ´Ð¼Ñ–Ð½Ñ–ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€ Ð¼Ð¾Ð±Ñ–Ð»ÑŒÐ½Ð¾Ñ— Ð¼ÐµÐ´Ð¸Ñ‡Ð½Ð¾Ñ— Ð±Ñ€Ð¸Ð³Ð°Ð´Ð¸","salary":"35 000 â€” 48 000 â‚´","company":"Ð”Ð¾ÐºÐ¾Ñ Ð¼ÐµÐ´Ð¸ÐºÐ°Ð»","page":24,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:04.738Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñ–Ð² Ð·Ñ– Ð·Ð½Ð°Ð½Ð½ÑÐ¼ Ð¿Ð¾Ð»ÑŒÑÑŒÐºÐ¾Ñ— Ð’2+(Ð’Ñ–Ð´Ð´Ð°Ð»ÐµÐ½Ð¾)","salary":"55 000 â€” 80 000 â‚´","company":"Agentify Ltd","page":24,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:04.738Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ ÐºÐ°Ñ‚ Ð” Ñ€Ð¾Ð·Ð²Ð¾Ð·ÐºÐ° Ð¼.ÐŸÐ¾Ñ‡Ð°Ð¹Ð½Ð°","salary":"22 000 â€” 23 000 â‚´","company":"ÐÐ²Ñ‚Ð¾Ð¼Ð¾Ð±Ñ–Ð»ÑŒÐ½Ð¸Ð¹ Ð¿ÐµÑ€ÐµÐ²Ñ–Ð·Ð½Ð¸Ðº, Ð¢ÐžÐ’","page":26,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:13.340Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ","salary":"35 000 â€” 45 000 â‚´","company":"In-O - information technologies","page":27,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:20.764Z"},{"title":"Finance System Automation Lead (BAF/BAS ERP)","salary":"120 000 â€” 130 000 â‚´","company":"Ksisters","page":27,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:20.764Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ B2B","salary":"30 000 â€” 90 000 â‚´","company":"DSN Group","page":28,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:25.053Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð½Ð° Ð°Ð²Ñ‚Ð¾ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ñ–Ñ— (Uklon ) Ð»Ñ–Ñ†ÐµÐ½Ð·Ñ–Ñ","salary":"30 000 â€” 50 000 â‚´","company":"DriveMe","page":28,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:25.054Z"},{"title":"Ð†Ð½Ð¶ÐµÐ½ÐµÑ€-ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ (Design engineer) Ð´Ð¸ÑÑ‚Ð°Ð½Ñ†Ñ–Ð¹Ð½Ð¾","salary":"55 000 â€” 65 000 â‚´","company":"GFE-Solutions, LLC","page":29,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:29.340Z"},{"title":"HR People Partner (IT company)","salary":"55 000 â€” 70 000 â‚´","company":"Personalities, HR Company","page":30,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:34.500Z"},{"title":"B2C Marketing Manager","salary":"45 000 â€” 50 000 â‚´","company":"Englishdom","page":30,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:34.500Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ Ð½Ð°Ð²Ñ‡Ð°Ð»ÑŒÐ½Ð¸Ñ… Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼ Ð´Ð»Ñ Ð¿Ñ–Ð´Ð¿Ñ€Ð¸Ñ”Ð¼Ñ†Ñ–Ð²","salary":"60 000 â€” 100 000 â‚´","company":"Ð‘Ñ–Ð·Ð½ÐµÑ-ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€","page":30,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:34.501Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ","salary":"50 000 â€” 120 000 â‚´","company":"ÐŸÑ€Ð°ÑÐ¾Ð»Ð¾Ð² Ñ‚Ð° Ð¿Ð°Ñ€Ñ‚Ð½ÐµÑ€Ð¸, Ð®Ñ€Ð¸Ð´Ð¸Ñ‡Ð½Ð° ÐºÐ¾Ð¼Ð¿Ð°Ð½Ñ–Ñ","page":31,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:38.909Z"},{"title":"Ð“Ð¾Ð»Ð¾Ð²Ð½Ð¸Ð¹ Ð±ÑƒÑ…Ð³Ð°Ð»Ñ‚ÐµÑ€","salary":"65 000 â€” 80 000 â‚´","company":"Unifinance","page":31,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:38.909Z"},{"title":"Ð’Ð¸ÐºÐ»Ð°Ð´Ð°Ñ‡ Ð¼Ð°Ñ‚ÐµÐ¼Ð°Ñ‚Ð¸ÐºÐ¸ (Ð¾Ð½Ð»Ð°Ð¹Ð½)","salary":"15 000 â€” 35 000 â‚´","company":"DiD, Ð¾Ð½Ð»Ð°Ð¹Ð½-ÑˆÐºÐ¾Ð»Ð° Ð¼Ð°Ñ‚ÐµÐ¼Ð°Ñ‚Ð¸ÐºÐ¸","page":32,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:43.197Z"},{"title":"Technical Support Representative","salary":"42 400 â€” 46 800 â‚´","company":"Pexly","page":32,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:43.198Z"},{"title":"Ð’Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒ Ð‘Ð ÐžÐÐ¬ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸Ð¸ Ð¡Ð•","salary":"70 000 â€” 90 000 â‚´","company":"Ð’ÐµÐ»Ñ–Ñ‚Ð°, ÐŸÐŸ, Ð¤Ñ–Ñ€Ð¼Ð°","page":32,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:43.198Z"},{"title":"Ð ÐµÐ³Ñ–Ð¾Ð½Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€","salary":"25 000 â€” 70 000 â‚´","company":"Ð“Ð¾Ñ€ÐºÑƒÐ½Ð¾Ð² Ð., Ð¤Ð›ÐŸ","page":32,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:43.198Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð°\\Ð¼ MAN ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ñ–Ñ— Ð¡Ð•","salary":"40 000 â€” 70 000 â‚´","company":"ÐÐ±Ñ€Ð°Ð¼Ð¾Ð²Ð¸Ñ‡ Ð¡.Ðœ., Ð¤ÐžÐŸ","page":32,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:43.198Z"},{"title":"ÐŸÐ¾Ð¼Ñ–Ñ‡Ð½Ð¸Ðº Ñ–Ð· Ð¿Ñ€Ð¸Ð¹Ð¾Ð¼Ñƒ Ð·Ð°Ð¼Ð¾Ð²Ð»ÐµÐ½ÑŒ, Ñ‡Ð°ÑÑ‚ÐºÐ¾Ð²Ð° Ð·Ð°Ð¹Ð½ÑÑ‚Ñ–ÑÑ‚ÑŒ","salary":"20 000 â€” 24 000 â‚´","company":"ÐšÐ¾Ð½Ð²ÐµÑ€ÑÑ—Ñ, Ð¢ÐžÐ’","page":32,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:43.198Z"},{"title":"ÐÐºÑ‚Ð¾Ñ€ÐºÐ°","salary":"500 â€” 40 000 â‚´","company":"ÐšÑƒÐ»Ð¸Ðº Ð.Ð’., Ð¤ÐžÐŸ","page":32,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:43.198Z"},{"title":"ÐŸÑ€Ð¸Ð²Ð°Ñ‚Ð½Ð¸Ð¹ Ð´ÐµÑ‚ÐµÐºÑ‚Ð¸Ð², Ñ€ÐµÐ³Ñ–Ð¾Ð½Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð½Ð¸Ðº Ð´ÐµÑ‚ÐµÐºÑ‚Ð¸Ð²Ð½Ð¾Ñ— Ð°Ð³ÐµÐ½Ñ†Ñ–Ñ—, Ð¢ÐµÑ€Ð½Ð¾Ð¿Ñ–Ð»ÑŒ","salary":"40 000 â€” 50 000 â‚´","company":"ÐšÐ¾Ð½Ñ€Ð°Ð´, Ð”ÐµÑ‚ÐµÐºÑ‚Ð¸Ð²Ð½Ð° Ð°Ð³ÐµÐ½Ñ†Ñ–Ñ","page":33,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:47.491Z"},{"title":"ÐŸÑ€Ð¾Ð¼Ð¾ÑƒÑ‚ÐµÑ€","salary":"25 000 â€” 38 000 â‚´","company":"RoboCode","page":33,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:47.491Z"},{"title":"Ð‘ÑƒÑ…Ð³Ð°Ð»Ñ‚ÐµÑ€ / Ñ„Ñ–Ð½Ð°Ð½ÑÐ¾Ð²Ð¸Ð¹ Ð°Ð½Ð°Ð»Ñ–Ñ‚Ð¸Ðº (Ð´Ð¸ÑÑ‚Ð°Ð½Ñ†Ñ–Ð¹Ð½Ð¾)","salary":"20 000 â€” 30 000 â‚´","company":"GeoBent","page":33,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:47.491Z"},{"title":"International Logistics/Dispatch Support Technician in Vyshneve/Kyiv","salary":"20 000 â€” 40 000 â‚´","company":"USKO Express Inc","page":34,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:51.757Z"},{"title":"Media Buyer Nutra (Google/Facebook)","salary":"100 000 â€” 200 000 â‚´","company":"Street Traffic","page":34,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:51.757Z"},{"title":"ÐžÑ…Ð¾Ñ€Ð¾Ð½Ð½Ð¸Ðº (Ð²Ð°Ñ…Ñ‚Ð°)","salary":"16 000 â€” 16 000 â‚´","company":"Ð‘Ð°Ñ€Ð±Ð°ÐºÐ°Ð½, Ð”ÐŸ","page":34,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:51.757Z"},{"title":"ÐšÐµÑ€Ñ–Ð²Ð½Ð¸Ðº call center (LATAM | Ð†ÑÐ¿Ð°Ð½ÑÑŒÐºÐ° Ð¼Ð¾Ð²Ð° | Remote)","salary":"40 000 â€” 80 000 â‚´","company":"1CallCenter","page":34,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:51.757Z"},{"title":"Ð ÐµÐºÑ€ÑƒÑ‚ÐµÑ€ Ð·Ñ– Ð·Ð½Ð°Ð½Ð½ÑÐ¼ ÑÐ»Ð¾Ð²Ð°Ñ†ÑŒÐºÐ¾Ñ—, Ñ‡ÐµÑÑŒÐºÐ¾Ñ— Ð¼Ð¾Ð²Ð¸ | Ð’Ñ–Ð´Ð´Ð°Ð»ÐµÐ½Ð¾","salary":"25 000 â€” 36 000 â‚´","company":"1CallCenter","page":34,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:51.757Z"},{"title":"Technical Support Engineer","salary":"35 000 â€” 50 000 â‚´","company":"Velpox","page":35,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:53:56.038Z"},{"title":"Ð¢ÐµÑ€Ð¸Ñ‚Ð¾Ñ€Ñ–Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€","salary":"20 000 â€” 40 000 â‚´","company":"Ð¡Ð¾Ð»Ð¾ÐœÐ¸Ñ","page":35,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:56.038Z"},{"title":"ÐÑÐ½Ñ-Ð²Ð¸Ñ…Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ","salary":"10 000 â€” 15 000 â‚´","company":"KIDDIE LAND","page":35,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:56.038Z"},{"title":"Ð’Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒ Ð´Ð°Ð»ÑŒÐ½Ð¾Ð±Ð¾Ð¹Ñ‰Ð¸Ðº - Ð•Ð¡Ð¢Ð¬ Ð‘Ð ÐžÐÐ˜Ð ÐžÐ’ÐÐÐ˜Ð•","salary":"40 000 â€” 75 000 â‚´","company":"ÐÐ²Ð°Ð½Ð³Ð°Ñ€Ð´ Ð›Ð¾Ð³Ð¸ÑÑ‚Ð¸Ðº, ÐžÐžÐž","page":35,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:53:56.038Z"},{"title":"ÐžÐ¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ call Ñ†ÐµÐ½Ñ‚Ñ€Ñƒ Ñ‚ÐµÐ»ÐµÐºÐ¾Ð¼ÑƒÐ½Ñ–ÐºÐ°Ñ†Ñ–Ñ—","salary":"10 000 â€” 35 000 â‚´","company":"SBT","page":36,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:00.343Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð¼Ñ–Ð¶Ð½Ð°Ñ€Ð¾Ð´Ð½Ð¸Ðº ÐºÐ°Ñ‚. Ð¡Ð•","salary":"80 000 â€” 90 000 â‚´","company":"ÐÐ³Ñ€Ð¾Ð½ÐµÑ€ÑƒÐ´Ð¿Ñ€Ð¾Ð¼, ÐžÐžÐž","page":36,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:00.343Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð°Ð²Ñ‚Ð¾Ð±ÑƒÑ MAN Ñ‚ÑƒÑ€Ð¸ÑÑ‚ VW Crafter","salary":"20 000 â€” 30 000 â‚´","company":"ÐŸÐµÑ‚Ñ€ÐµÐ½ÐºÐ¾, Ð¤ÐžÐŸ","page":36,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:00.343Z"},{"title":"ÐœÐ¾Ð½Ñ‚Ð°Ð¶Ð½Ð¸Ðº Ð²Ñ–ÐºÐ¾Ð½, Ð±Ð°Ð»ÐºÐ¾Ð½Ñ–Ð²","salary":"75 000 â€” 140 000 â‚´","company":"Odas / ÐžÐ´Ð°Ñ","page":37,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:04.628Z"},{"title":"Ð•Ð»ÐµÐºÑ‚Ñ€Ð¾Ð·Ð²Ð°Ñ€Ð½Ð¸Ðº","salary":"35 â€” 40 â‚´","company":"ÐÐ¢Ð¦ ÐŸÑ€Ð¾Ð¼Ñ‚ÐµÑ…Ð´Ñ–Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ°, Ð¢ÐžÐ’","page":37,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:04.628Z"},{"title":"Ð ÐµÐ¿ÐµÑ‚Ð¸Ñ‚Ð¾Ñ€ Ð· Ð½Ñ–Ð¼ÐµÑ†ÑŒÐºÐ¾Ñ— Ð¼Ð¾Ð²Ð¸","salary":"20 000 â€” 50 000 â‚´","company":"ÐšÑ€Ð¸ÑˆÐºÐ¾, Ð¤ÐžÐŸ","page":37,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:04.628Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð·ÐµÑ€Ð½Ð¾Ð²Ð¾Ð·Ñƒ(ÑÐ°Ð¼Ð¾ÑÐºÐ¸Ð´Ñƒ)","salary":"26 000 â€” 700 000 â‚´","company":"Ð”ÐµÐ¼ÐµÑ‚Ñ€Ð°, Ð¢ÐžÐ’","page":38,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:08.913Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€Ð° Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ Ð¼Ð°ÑÑ‚Ð¸Ð»ÑŒÐ½Ð¸Ñ… Ð¼Ð°Ñ‚ÐµÑ€Ñ–Ð°Ð»Ñ–Ð²","salary":"15 000 â€” 45 000 â‚´","company":"ÐÐ’Ð¢ÐžÐ‘ÐÐ ÐžÐ†Ð›, Ð¢ÐžÐ’","page":38,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:08.913Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ñ–Ñ— Ð¡Ð•","salary":"65 000 â€” 70 000 â‚´","company":"Ð“ÐÐ›ÐÐ Ð“","page":38,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:08.913Z"},{"title":"Ð Ñ–Ñ”Ð»Ñ‚Ð¾Ñ€","salary":"50 000 â€” 80 000 â‚´","company":"ÐŸÑ€ÐµÐ¼ÑŒÐµÑ€, ÐÐ","page":39,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:13.726Z"},{"title":"Ð›Ñ–Ð´Ð¾Ð³ÐµÐ½ÐµÑ€Ð°Ñ‚Ð¾Ñ€ B2B Lead Generation Specialist SaaS, Instagram","salary":"15 000 â€” 30 000 â‚´","company":"Ð‘Ð¾Ð³ÑƒÑÐ»Ð°Ð²ÑÑŒÐºÐ° Ð›.Ð’., Ð¤ÐžÐŸ","page":39,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:13.726Z"},{"title":"Ð”Ð¸ÑÑ‚Ð°Ð½Ñ†Ñ–Ð¹Ð½Ð¾","salary":"20 000 â€” 35 000 â‚´","company":"Ð’ÑÐµ Ð´Ð»Ñ Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ñƒ Ñ‚Ð° Ð±ÑƒÐ´Ñ–Ð²Ð½Ð¸Ñ†Ñ‚Ð²Ð°","page":39,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:13.726Z"},{"title":"ÐžÐ¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ Ð· Ð¾Ð±Ñ€Ð¾Ð±ÐºÐ¸ Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½ÑŒ","salary":"7 040 â€” 8 500 â‚´","company":"Ð”ÐÐ¢ÐÐ¥ÐÐ‘. ÐÐ†, Ð¢ÐžÐ’","page":39,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:13.726Z"},{"title":"ÐœÐ°Ð¹ÑÑ‚ÐµÑ€ Ð· Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ñƒ ÐŸÐš","salary":"30 000 â€” 70 000 â‚´","company":"ÐšÐ¾Ð¼ÐŸÐ¾Ð¼","page":39,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:13.726Z"},{"title":"ÐœÐ¾Ð½Ñ‚Ð°Ð¶Ð½Ð¸Ðº Ð¾Ð¿Ð°Ð»ÐµÐ½Ð½Ñ","salary":"45 000 â€” 80 000 â‚´","company":"Ð“Ð°Ð·Ð´Ð°-Ð¡ÐµÑ€Ð²Ñ–Ñ, Ð¢ÐžÐ’","page":39,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:13.726Z"},{"title":"Ð¡Ð¿ÐµÑ†Ñ–Ð°Ð»Ñ–ÑÑ‚ Ð· Ð¿Ð¾ÑˆÑƒÐºÑƒ Ñ‚Ð° Ð¾Ð±Ñ€Ð¾Ð±ÐºÐ¸ Ð´Ð°Ð½Ð¸Ñ… / Data Research (Ð·Ñ– Ð·Ð½Ð°Ð½Ð½ÑÐ¼ Ð°Ð½Ð³Ð»Ñ–Ð¹ÑÑŒÐºÐ¾Ñ—)","salary":"14 400 â€” 27 200 â‚´","company":"SSCU Data Acquisition and Validation","page":40,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:18.004Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ","salary":"50 000 â€” 80 000 â‚´","company":"Ð¢ÐžÐ’ Ð¤Ð Ð•Ð¨ ÐœÐ†Ð›Ðš","page":40,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:18.004Z"},{"title":"AutoCad technician","salary":"30 000 â€” 30 000 â‚´","company":"Av interiors","page":40,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:18.004Z"},{"title":"Ð’Ñ–Ð´ÐµÐ¾-ÐºÑ€ÐµÐ°Ñ‚Ð¾Ñ€ / ÐžÐ±Ð»Ð¸Ñ‡Ñ‡Ñ Ð±Ñ€ÐµÐ½Ð´Ñƒ (TikTok / Instagram)","salary":"25 000 â€” 35 000 â‚´","company":"It Rage","page":40,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:18.004Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ñ–Ñ— Ð¡Ð•","salary":"50 000 â€” 60 000 â‚´","company":"Ð‘ÑƒÑ‡Ð°-Ð›Ð¾Ð³Ñ–ÑÑ‚Ð¸Ðº, Ð¢ÐžÐ’","page":40,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:18.004Z"},{"title":"Ð ÐµÐ³Ñ–Ð¾Ð½Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€ (ÐšÐ¸Ñ—Ð²ÑÑŒÐºÐ°, Ð–Ð¸Ñ‚Ð¾Ð¼Ð¸Ñ€ÑÑŒÐºÐ°, Ð Ñ–Ð²Ð½ÐµÐ½ÑÑŒÐºÐ° Ð¾Ð±Ð». Ð›ÑƒÑ†ÑŒÐº)","salary":"60 000 â€” 80 000 â‚´","company":"ÐžÐ¿Ñ‚Ð¸Ñ‡Ð½Ð¸Ð¹ ÐšÐ»ÑƒÐ±","page":40,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:18.004Z"},{"title":"Media buyer","salary":"40 000 â€” 80 000 â‚´","company":"Avion","page":41,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:22.310Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ","salary":"25 000 â€” 60 000 â‚´","company":"ÐšÐ¾Ð¼Ñ„Ð¾Ñ€Ñ‚ Ñ‚ÐµÐºÑ","page":41,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:22.310Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹-ÐºÑƒÑ€\u0027Ñ”Ñ€","salary":"20 000 â€” 30 000 â‚´","company":"","page":41,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:22.310Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð²Ð°Ð½Ñ‚Ð°Ð¶Ñ–Ð²ÐºÐ¸ ÐºÐ°Ñ‚ Ð•","salary":"50 000 â€” 75 000 â‚´","company":"Ð¢Ð¾ÐºÐ°Ñ€ Ð®.Ð’., Ð¤ÐžÐŸ","page":41,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:22.310Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ","salary":"35 000 â€” 65 000 â‚´","company":"Cheffcall","page":41,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:22.310Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ ÐºÐ°Ñ‚. Ð¡ Ð½Ð° ÑÐ°Ð¼Ð¾ÑÐºÐ¸Ð´ (MAN, Skania, Daf)","salary":"95 000 â€” 120 000 â‚´","company":"ÐšÐžÐÐ¡Ð¢ÐÐÐ¢Ð-Ð¡Ð¢Ð ÐžÐ™, Ð¢ÐžÐ’, ÐÐ’Ð¤","page":42,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:26.595Z"},{"title":"Ð‘ÑƒÑ…Ð³Ð°Ð»Ñ‚ÐµÑ€","salary":"40 000 â€” 120 000 â‚´","company":"ÐšÐžÐÐ¡Ð¢ÐÐÐ¢Ð-Ð¡Ð¢Ð ÐžÐ™, Ð¢ÐžÐ’, ÐÐ’Ð¤","page":42,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:26.595Z"},{"title":"ÐÐ²Ñ‚Ð¾ÐºÑ€Ð°Ð½Ð¾Ð²Ñ‰Ð¸Ðº Ð°Ð²Ñ‚Ð¾ÐºÑ€Ð°Ð½Ð° XCMG, Zoomlion (25, 30, 50 Ñ‚)","salary":"95 000 â€” 140 000 â‚´","company":"ÐšÐžÐÐ¡Ð¢ÐÐÐ¢Ð-Ð¡Ð¢Ð ÐžÐ™, Ð¢ÐžÐ’, ÐÐ’Ð¤","page":42,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:26.595Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ ÐºÐ°Ñ‚. Ð¡, Ð• Ð½Ð° Ñ‚ÑÐ³Ð°Ñ‡ (MAN TGX 33.480, Ñ‚Ñ€Ð°Ð», Ð±Ð¾Ñ€Ñ‚Ð¾Ð²Ð° Ð¿Ð»Ð°Ñ‚Ñ„Ð¾Ñ€Ð¼Ð°)","salary":"110 000 â€” 150 000 â‚´","company":"ÐšÐžÐÐ¡Ð¢ÐÐÐ¢Ð-Ð¡Ð¢Ð ÐžÐ™, Ð¢ÐžÐ’, ÐÐ’Ð¤","page":42,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:26.595Z"},{"title":"Freight Dispatcher (Dry Van, Reefer, USA)","salary":"180 000 â€” 330 000 â‚´","company":"LNG Holding","page":42,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:26.595Z"},{"title":"Ð‘ÑƒÐ´Ñ–Ð²ÐµÐ»ÑŒÐ½Ð¸Ðº Ð¾Ð¿Ñ‚Ð¾Ð²Ð¾Ð»Ð¾ÐºÐ¾Ð½Ð½Ð¸Ñ… Ð¼ÐµÑ€ÐµÐ¶","salary":"40 000 â€” 60 000 â‚´","company":"ÐŸÑ€Ð¾Ð²Ð°Ð¹Ð´","page":42,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:26.595Z"},{"title":"Ð‘Ñ–Ð·Ð½ÐµÑ- Ð°ÑÐ¸ÑÑ‚ÐµÐ½Ñ‚ (USA)","salary":"34 000 â€” 56 000 â‚´","company":"Supplax","page":43,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:30.872Z"},{"title":"Ð¤Ð°Ñ…Ñ–Ð²ÐµÑ†ÑŒ ÐºÐ¾Ð½Ñ‚Ð°ÐºÑ‚-Ñ†ÐµÐ½Ñ‚Ñ€Ñƒ Ð·Ñ– Ð·Ð½Ð°Ð½Ð½ÑÐ¼ Ð°Ð½Ð³Ð»Ñ–Ð¹ÑÑŒÐºÐ¾Ñ— Ð¼Ð¾Ð²Ð¸ (Ð´Ð¸ÑÑ‚Ð°Ð½Ñ†Ñ–Ð¹Ð½Ð¾)","salary":"21 000 â€” 25 000 â‚´","company":"Piraeus Bank Ukraine","page":43,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:30.872Z"},{"title":"Ð¡Ð»ÑŽÑÐ°Ñ€-Ð¼Ð¾Ð½Ñ‚Ð°Ð¶Ð½Ð¸Ðº","salary":"35 000 â€” 50 000 â‚´","company":"Ð‘ÐžÐ•Ð— Ð£ÐšÐ ÐÐ‡ÐÐ, Ð¢ÐžÐ’","page":43,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:30.872Z"},{"title":"Ð›Ñ–Ð´Ð¾Ð³ÐµÐ½ÐµÑ€Ð°Ñ‚Ð¾Ñ€ ÑÐºÐ¸Ð¹/ÑÐºÐ° Ð³Ñ€Ð°Ñ” Ð² Ñ‚ÐµÐ½Ñ–Ñ Ð°Ð±Ð¾ Ð¿Ð°Ð´ÐµÐ»","salary":"30 000 â€” 50 000 â‚´","company":"Imperia HR","page":44,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:35.155Z"},{"title":"Ð’Ñ–Ð´Ð´Ð°Ð»ÐµÐ½Ð° Ñ€Ð¾Ð±Ð¾Ñ‚Ð°","salary":"30 000 â€” 60 000 â‚´","company":"ÐŸÑ€Ð¾Ð´Ð°Ð¶ Ð¿Ð¾ÑÑƒÐ´Ñƒ Ñ‚Ð° Ñ‚ÐµÐºÑÑ‚Ð¸Ð»ÑŽ","page":44,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:35.155Z"},{"title":"1 Ð´ÐµÐ½ÑŒ Ñ‚Ð¾Ð¼Ñƒ","salary":"25 000 â€” 50 000 â‚´","company":"ÐŸÐ¾Ð¿Ð°Ð½Ð´Ð¾Ð¿ÑƒÐ»Ð¾ Ð¢.Ð’., Ð¤ÐžÐŸ","page":45,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:39.486Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ","salary":"40 000 â€” 65 000Â â‚´","company":"Cheffcall","page":45,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:39.486Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ","salary":"20 000 â€” 40 000Â â‚´","company":"TattooBestShop","page":45,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:39.486Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ (ÐœÐ°Ð»Ð¸Ð½Ð¾Ð²ÑÑŒÐºÐ¸Ð¹ Ñ€-Ð½)","salary":"40 000 â€” 100 000Â â‚´","company":"ÐœÐ¾Ð±Ñ–Ð»ÑŒÐ½Ð° ÐžÐ¿Ñ‚Ð¸ÐºÐ°","page":45,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:39.486Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð¿Ð¾ Ñ€Ð¾Ð±Ð¾Ñ‚Ñ– Ð· ÐºÐ»Ñ–Ñ”Ð½Ñ‚Ð°Ð¼Ð¸","salary":"18 000 â€” 26 000 â‚´","company":"Efrat","page":46,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:43.784Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ñ–Ð· Ñ€Ð¾Ð·Ð²Ð¸Ñ‚ÐºÑƒ Ð¿Ð°Ñ€Ñ‚Ð½ÐµÑ€Ñ–Ð² (B2B)","salary":"15 000 â€” 30 000 â‚´","company":"ÐœÐ¸Ð°Ð¢Ð¸Ñ","page":46,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:43.784Z"},{"title":"ÐšÐ¾Ð½Ñ‚ÐµÐ½Ñ‚-ÐºÑ€ÐµÐ°Ñ‚Ð¾Ñ€ TikTok / SMM TikTok / Faceless TikTok Content Creator","salary":"15 000 â€” 25 000 â‚´","company":"Alpenor","page":46,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:43.784Z"},{"title":"Ð‘Ñ€Ð¸Ð³Ð°Ð´Ð° Ð¿Ð¾ Ð¼Ð¾Ð½Ñ‚Ð°Ð¶Ñƒ Ð²Ñ–ÐºÐ¾Ð½","salary":"30 000 â€” 60 000 â‚´","company":"Beer Time","page":46,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:43.784Z"},{"title":"ÐœÐµÐ´Ð¸Ñ‡Ð½Ð¸Ð¹ Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð½Ð¸Ðº â€” Ð¾Ð½Ð»Ð°Ð¹Ð½-Ð²Ñ–Ð·Ð¸Ñ‚Ð¸, Ð²Ñ–Ð»ÑŒÐ½Ð¸Ð¹ Ð³Ñ€Ð°Ñ„Ñ–Ðº | Â«Ð†Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ Ð¤Ð°Ñ€Ð¼ ÐŸÑ€Ð¾Ð¼Ð¾Ñ†Ñ–Ñ—Â»","salary":"40 000 â€” 50 000 â‚´","company":"Ð†ÐÐ¡Ð¢Ð˜Ð¢Ð£Ð¢ Ð¤ÐÐ Ðœ ÐŸÐ ÐžÐœÐžÐ¦Ð†Ð‡","page":46,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:43.784Z"},{"title":"ÐžÑ„Ñ–Ñ†ÐµÑ€ Ð³Ñ€ÑƒÐ¿Ð¸ Ñ€Ð¾Ð·Ð²Ñ–Ð´ÐºÐ¸-ÐºÐ°Ð¿Ñ–Ñ‚Ð°Ð½","salary":"20 000 â€” 120 000 â‚´","company":"ÐšÐ¾Ñ€Ð°Ð±ÐµÐ»ÑŒÐ½Ð¸Ð¹ Ñ€Ð°Ð¹Ð¾Ð½Ð½Ð¸Ð¹ Ñ‚ÐµÑ€Ð¸Ñ‚Ð¾Ñ€Ñ–Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ñ†ÐµÐ½Ñ‚Ñ€ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð° ÑÐ¾Ñ†Ñ–Ð°Ð»ÑŒÐ½Ð¾Ñ— Ð¿Ñ–Ð´Ñ‚Ñ€Ð¸Ð¼ÐºÐ¸","page":47,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:48.071Z"},{"title":"Ð‘ÑƒÑ…Ð³Ð°Ð»Ñ‚ÐµÑ€","salary":"23 000 â€” 27 000 â‚´","company":"Lawyer Accountant","page":47,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:48.071Z"},{"title":"ÐžÑ„Ñ–Ñ†ÐµÑ€ Ð²Ñ–Ð´Ð´Ñ–Ð»ÐµÐ½Ð½Ñ Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¸Ð²Ð½Ð¾Ð³Ð¾ ÑƒÐ¿Ñ€Ð°Ð²Ð»Ñ–Ð½Ð½Ñ-Ð¼Ð°Ð¹Ð¾Ñ€","salary":"20 000 â€” 120 000 â‚´","company":"ÐšÐ¾Ñ€Ð°Ð±ÐµÐ»ÑŒÐ½Ð¸Ð¹ Ñ€Ð°Ð¹Ð¾Ð½Ð½Ð¸Ð¹ Ñ‚ÐµÑ€Ð¸Ñ‚Ð¾Ñ€Ñ–Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ñ†ÐµÐ½Ñ‚Ñ€ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð° ÑÐ¾Ñ†Ñ–Ð°Ð»ÑŒÐ½Ð¾Ñ— Ð¿Ñ–Ð´Ñ‚Ñ€Ð¸Ð¼ÐºÐ¸","page":47,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:48.071Z"},{"title":"Ð¡Ñ‚Ð°Ñ€ÑˆÐ¸Ð¹ Ð½Ð°ÑƒÐºÐ¾Ð²Ð¸Ð¹ ÑÐ¿Ñ–Ð²Ñ€Ð¾Ð±Ñ–Ñ‚Ð½Ð¸Ðº ÐÐ”Ð’ ÐÐ”Ð£-Ð¿Ñ–Ð´Ð¿Ð¾Ð»ÐºÐ¾Ð²Ð½Ð¸Ðº","salary":"20 000 â€” 120 000 â‚´","company":"ÐšÐ¾Ñ€Ð°Ð±ÐµÐ»ÑŒÐ½Ð¸Ð¹ Ñ€Ð°Ð¹Ð¾Ð½Ð½Ð¸Ð¹ Ñ‚ÐµÑ€Ð¸Ñ‚Ð¾Ñ€Ñ–Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ñ†ÐµÐ½Ñ‚Ñ€ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð° ÑÐ¾Ñ†Ñ–Ð°Ð»ÑŒÐ½Ð¾Ñ— Ð¿Ñ–Ð´Ñ‚Ñ€Ð¸Ð¼ÐºÐ¸","page":47,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:48.071Z"},{"title":"Ð—Ð°ÑÑ‚ÑƒÐ¿Ð½Ð¸Ðº Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ð¸ÐºÐ° Ñ„Ð°ÐºÑƒÐ»ÑŒÑ‚ÐµÑ‚Ñƒ Ð· Ð½Ð°Ð²Ñ‡Ð°Ð»ÑŒÐ½Ð¾Ñ— Ñ‚Ð° Ð½Ð°ÑƒÐºÐ¾Ð²Ð¾Ñ— Ñ€Ð¾Ð±Ð¾Ñ‚Ð¸- Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ð¸Ðº Ð½Ð°Ð²Ñ‡Ð°Ð»ÑŒÐ½Ð¾Ñ— Ñ‡Ð°ÑÑ‚Ð¸Ð½Ð¸","salary":"20 000 â€” 120 000 â‚´","company":"ÐšÐ¾Ñ€Ð°Ð±ÐµÐ»ÑŒÐ½Ð¸Ð¹ Ñ€Ð°Ð¹Ð¾Ð½Ð½Ð¸Ð¹ Ñ‚ÐµÑ€Ð¸Ñ‚Ð¾Ñ€Ñ–Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ñ†ÐµÐ½Ñ‚Ñ€ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð° ÑÐ¾Ñ†Ñ–Ð°Ð»ÑŒÐ½Ð¾Ñ— Ð¿Ñ–Ð´Ñ‚Ñ€Ð¸Ð¼ÐºÐ¸","page":47,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:48.071Z"},{"title":"ÐÐ°Ñ‡Ð°Ð»ÑŒÐ½Ð¸Ðº Ñ€Ð¾Ð·Ð²Ñ–Ð´ÐºÐ¸ ÑˆÑ‚Ð°Ð±Ñƒ -Ð¼Ð°Ð¹Ð¾Ñ€","salary":"20 000 â€” 120 000 â‚´","company":"ÐšÐ¾Ñ€Ð°Ð±ÐµÐ»ÑŒÐ½Ð¸Ð¹ Ñ€Ð°Ð¹Ð¾Ð½Ð½Ð¸Ð¹ Ñ‚ÐµÑ€Ð¸Ñ‚Ð¾Ñ€Ñ–Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ñ†ÐµÐ½Ñ‚Ñ€ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð° ÑÐ¾Ñ†Ñ–Ð°Ð»ÑŒÐ½Ð¾Ñ— Ð¿Ñ–Ð´Ñ‚Ñ€Ð¸Ð¼ÐºÐ¸","page":47,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:48.071Z"},{"title":"Ð”Ð¾Ñ†ÐµÐ½Ñ‚-Ð¿iÐ´Ð¿Ð¾Ð»ÐºÐ¾Ð²Ð½Ð¸Ðº","salary":"20 000 â€” 120 000 â‚´","company":"ÐšÐ¾Ñ€Ð°Ð±ÐµÐ»ÑŒÐ½Ð¸Ð¹ Ñ€Ð°Ð¹Ð¾Ð½Ð½Ð¸Ð¹ Ñ‚ÐµÑ€Ð¸Ñ‚Ð¾Ñ€Ñ–Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ñ†ÐµÐ½Ñ‚Ñ€ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð° ÑÐ¾Ñ†Ñ–Ð°Ð»ÑŒÐ½Ð¾Ñ— Ð¿Ñ–Ð´Ñ‚Ñ€Ð¸Ð¼ÐºÐ¸","page":47,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:48.071Z"},{"title":"Ð¡Ñ‚Ð°Ñ€ÑˆÐ¸Ð¹ Ð²Ð¸ÐºÐ»Ð°Ð´Ð°Ñ‡-Ð¿iÐ´Ð¿Ð¾Ð»ÐºÐ¾Ð²Ð½Ð¸Ðº","salary":"20 000 â€” 120 000 â‚´","company":"ÐšÐ¾Ñ€Ð°Ð±ÐµÐ»ÑŒÐ½Ð¸Ð¹ Ñ€Ð°Ð¹Ð¾Ð½Ð½Ð¸Ð¹ Ñ‚ÐµÑ€Ð¸Ñ‚Ð¾Ñ€Ñ–Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ñ†ÐµÐ½Ñ‚Ñ€ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð° ÑÐ¾Ñ†Ñ–Ð°Ð»ÑŒÐ½Ð¾Ñ— Ð¿Ñ–Ð´Ñ‚Ñ€Ð¸Ð¼ÐºÐ¸","page":47,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:48.071Z"},{"title":"Ð’Ð¸ÐºÐ»Ð°Ð´Ð°Ñ‡-Ð¼Ð°Ð¹Ð¾Ñ€","salary":"20 000 â€” 120 000 â‚´","company":"ÐšÐ¾Ñ€Ð°Ð±ÐµÐ»ÑŒÐ½Ð¸Ð¹ Ñ€Ð°Ð¹Ð¾Ð½Ð½Ð¸Ð¹ Ñ‚ÐµÑ€Ð¸Ñ‚Ð¾Ñ€Ñ–Ð°Ð»ÑŒÐ½Ð¸Ð¹ Ñ†ÐµÐ½Ñ‚Ñ€ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚ÑƒÐ²Ð°Ð½Ð½Ñ Ñ‚Ð° ÑÐ¾Ñ†Ñ–Ð°Ð»ÑŒÐ½Ð¾Ñ— Ð¿Ñ–Ð´Ñ‚Ñ€Ð¸Ð¼ÐºÐ¸","page":47,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:48.071Z"},{"title":"ÐŸÑ€Ð¸Ð±Ð¸Ñ€Ð°Ð»ÑŒÐ½Ð¸Ñ†Ñ ÐºÐ»Ñ–Ð½ÐµÑ€","salary":"18 000 â€” 28 000 â‚´","company":"Clean force","page":48,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:52.361Z"},{"title":"Ð’Ñ‡Ð¸Ñ‚ÐµÐ»ÑŒ ÑƒÐºÑ€Ð°Ñ—Ð½ÑÑŒÐºÐ¾Ñ— Ð¼Ð¾Ð²Ð¸ Ñ‚Ð° Ð»Ñ–Ñ‚ÐµÑ€Ð°Ñ‚ÑƒÑ€Ð¸","salary":"10 000 â€” 25 000 â‚´","company":"ÐšÐ¸Ñ€Ð¸Ñ‡ÐµÐ½ÐºÐ¾ Ð®., Ð¤ÐžÐŸ","page":48,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:52.361Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð²Ð°Ð½Ñ‚Ð°Ð¶Ñ–Ð²ÐºÐ¸","salary":"30 000 â€” 50 000 â‚´","company":"ÐÐ³Ñ€Ð¾Ð¿Ñ€Ð¾Ð¼Ð¼Ð¾Ð½Ñ‚Ð°Ð¶","page":48,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:52.361Z"},{"title":"ÐÑ€Ñ…Ñ–Ñ‚ÐµÐºÑ‚Ð¾Ñ€","salary":"20 000 â€” 40 000 â‚´","company":"Ð’Ð¾Ñ€Ð¾Ñ‚Ñ–Ð»Ñ–Ð½, Ð¤ÐžÐŸ","page":49,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:54:56.650Z"},{"title":"Ð›Ð¾Ð³Ñ–ÑÑ‚, Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ñ‚Ñ€Ð°Ð½ÑÐ¿Ð¾Ñ€Ñ‚Ð½Ð¾Ñ— Ð»Ð¾Ð³Ñ–ÑÑ‚Ð¸ÐºÐ¸","salary":"28 000 â€” 30 000 â‚´","company":"Zakaz.ua","page":49,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:54:56.651Z"},{"title":"Customer Support Representative","salary":"38 000 â€” 45 000 â‚´","company":"Helpware","page":50,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:03.509Z"},{"title":"SMM Project Manager","salary":"25 000 â€” 35 000 â‚´","company":"BLACK SMM Agency","page":50,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:03.509Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð½Ð° MAN (5 Ñ‚, Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐ° Ð¿Ð¾ Ñ‚Ð¾Ñ‡ÐºÐ°Ð¼)","salary":"48 000 â€” 65 000 â‚´","company":"Ð¤Ð¾Ñ€Ñ‚-Ð‘Ð¸Ñ€-ÐŸÐ»ÑŽÑ, ÐžÐžÐž","page":50,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:03.509Z"},{"title":"ÐžÐ¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ Ð½Ð° Ð²Ñ…Ñ–Ð´Ð½Ñƒ Ð»Ñ–Ð½Ñ–ÑŽ","salary":"27 000 â€” 30 000 â‚´","company":"CreditKasa","page":50,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:03.509Z"},{"title":"Ð’Ð¸ÐºÐ»Ð°Ð´Ð°Ñ‡ Ð°Ð½Ð³Ð»Ñ–Ð¹ÑÑŒÐºÐ¾Ñ— Ð¼Ð¾Ð²Ð¸","salary":"15 000 â€” 35 000 â‚´","company":"AntiSchool Online","page":50,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:03.509Z"},{"title":"English Teacher","salary":"15 000 â€” 30 000 â‚´","company":"AntiSchool Online","page":50,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:03.509Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ (Ð’2Ð’, Ñ‚ÐµÐ¿Ð»Ð¸Ð¹ Ñ‚Ñ€Ð°Ñ„Ñ–Ðº)","salary":"20 000 â€” 45 000 â‚´","company":"INTBOARD","page":51,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:07.780Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ Ð² Ð¾Ð½Ð»Ð°Ð¹Ð½-ÑˆÐºÐ¾Ð»Ñƒ Ð°Ð½Ð³Ð»Ñ–Ð¹ÑÑŒÐºÐ¾Ñ—","salary":"35 000 â€” 70 000 â‚´","company":"Study Less","page":51,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:07.780Z"},{"title":"Ð’Ñ–Ð´Ð´Ð°Ð»ÐµÐ½Ð° Ñ€Ð¾Ð±Ð¾Ñ‚Ð°","salary":"13 500 â€” 30 300 â‚´","company":"TP Ukraine","page":51,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:07.780Z"},{"title":"HR Assistant/Recruiter (Remote)","salary":"35 000 â€” 50 000 â‚´","company":"LNG Holding","page":52,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:12.064Z"},{"title":"Ð’Ñ–Ð´Ð´Ð°Ð»ÐµÐ½Ð° Ñ€Ð¾Ð±Ð¾Ñ‚Ð°","salary":"45 000 â€” 70 000 â‚´","company":"Ð’Ð‘Ð, ÐžÐžÐž","page":52,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:12.064Z"},{"title":"ÐÐ´Ð¼Ñ–Ð½Ñ–ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€, Ð¾Ñ€Ð³Ð°Ð½Ñ–Ð·Ð°Ñ‚Ð¾Ñ€ Ñ‚ÑƒÑ€Ð½Ñ–Ñ€Ñ–Ð² (ÐŸÐ°Ð´ÐµÐ»-ÐºÐ»ÑƒÐ±, padel tennis, Ñ‚ÐµÐ½Ñ–Ñ)","salary":"30 000 â€” 50 000 â‚´","company":"Imperia HR","page":53,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:19.139Z"},{"title":"Recruiter","salary":"25 000 â€” 32 000 â‚´","company":"MK:translations","page":54,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:23.435Z"},{"title":"Ð¤Ð°Ñ…Ñ–Ð²ÐµÑ†ÑŒ Ð· Ð²Ñ–Ð´Ð´Ñ–Ð»Ñƒ ÐºÐ°Ð´Ñ€Ñ–Ð²","salary":"10 000 â€” 15 000 â‚´","company":"BigFishCompany","page":54,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:23.435Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ñ–Ñ— Ð¡ Ð½Ð° Ð°Ð²Ñ‚Ð¾ Ð· ÐºÑ€Ð°Ð½Ð¾Ð¼ Ð¼Ð°Ð½Ñ–Ð¿ÑƒÐ»ÑÑ‚Ð¾Ñ€Ð¾Ð¼","salary":"60 000 â€” 75 000 â‚´","company":"Ð”Ð¾Ð½-Ð¢Ñ€Ð°Ð½Ñ Ð›Ð¾Ð³Ñ–ÑÑ‚Ð¸Ðº, Ð¢ÐžÐ’","page":54,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:23.435Z"},{"title":"Ð’Ñ‡Ð¸Ñ‚ÐµÐ»ÑŒ Ð¼Ð°Ñ‚ÐµÐ¼Ð°Ñ‚Ð¸ÐºÐ¸","salary":"18 000 â€” 36 000 â‚´","company":"ÐœÐ°Ñ‚ÐµÐ¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð° Ð¨ÐºÐ¾Ð»Ð° Ð§Ð¾Ñ€Ð½Ð¾Ð³Ð¾","page":54,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:23.435Z"},{"title":"ÐžÐ¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ Ñ‡Ð°Ñ‚Ñƒ","salary":"25 000 â€” 28 000 â‚´","company":"Vakantro","page":54,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:23.435Z"},{"title":"UI/UX Designer","salary":"20 000 â€” 35 000 â‚´","company":"Bravilo","page":54,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:23.435Z"},{"title":"Python Developer","salary":"25 000 â€” 30 000 â‚´","company":"Bravilo","page":54,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:23.435Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ñƒ Ñ‚Ð°ÐºÑÑ– Ð½Ð° Ð°Ð²Ñ‚Ð¾ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ñ–Ñ—","salary":"35 000 â€” 55 000 â‚´","company":"Procars","page":55,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:27.731Z"},{"title":"Ð¤Ð°Ñ…Ñ–Ð²ÐµÑ†ÑŒ Ð· Ð¾Ñ€Ð³Ð°Ð½Ñ–Ð·Ð°Ñ†Ñ–Ñ— Ð½Ð°Ð²Ñ‡Ð°Ð»ÑŒÐ½Ð¾Ñ— Ñ€Ð¾Ð±Ð¾Ñ‚Ð¸","salary":"22 000 â€” 22 000 â‚´","company":"Ð¥Ð°Ñ€ÐºÑ–Ð²ÑÑŒÐºÐ¸Ð¹ ÑƒÐ½Ñ–Ð²ÐµÑ€ÑÐ¸Ñ‚ÐµÑ‚, Ð¢ÐžÐ’","page":55,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:27.731Z"},{"title":"Ð’Ð¸ÐºÐ»Ð°Ð´Ð°Ñ‡ Ð°Ð½Ð³Ð»Ñ–Ð¹ÑÑŒÐºÐ¾Ñ— Ð¼Ð¾Ð²Ð¸","salary":"40 000 â€” 60 000 â‚´","company":"BuildUp School","page":55,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:27.731Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð²Ð°Ð½Ñ‚Ð°Ð¶Ð½Ð¾Ð³Ð¾ Ð°Ð²Ñ‚Ð¾","salary":"50 000 â€” 100 000 â‚´","company":"Ð¤Ñ–Ð½-ÐÐ³Ñ€Ð¾Ñ‚Ñ€ÐµÐ¹Ð´","page":55,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:27.731Z"},{"title":"Account Manager (100% Remote â€¢ No Cold Calls)","salary":"36 000 â€” 55 000 â‚´","company":"ÐšÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ñ Keyapp","page":55,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:27.731Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ, Ð’2Ð’","salary":"15 000 â€” 40 000 â‚´","company":"GURTOVA","page":56,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:32.002Z"},{"title":"Ð ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€ ÑÑ‚Ñ€Ñ–Ñ‡ÐºÐ¸ Ð½Ð¾Ð²Ð¸Ð½","salary":"22 000 â€” 27 000 â‚´","company":"Ð“Ð»Ð°Ð²ÐºÐ¾Ð¼","page":56,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:32.002Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ ÐºÐ°Ñ‚ Ð’","salary":"35 000 â€” 70 000 â‚´","company":"ÐšÐ²Ð°ÑˆÑƒÐº Ðœ., Ð¤ÐžÐŸ","page":56,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:32.002Z"},{"title":"Ð’Ñ–Ð´Ð´Ð°Ð»ÐµÐ½Ð° Ñ€Ð¾Ð±Ð¾Ñ‚Ð°","salary":"7 000 â€” 18 000 â‚´","company":"Ð›Ñ–Ð¿Ñ–ÑÑ–Ð²Ñ–Ñ†ÑŒÐºÐ° Ð.Ðž., Ð¤ÐžÐŸ","page":56,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:32.002Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ","salary":"8 000 â€” 15 000 â‚´","company":"ALOHA Language School","page":56,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:32.002Z"},{"title":"Ð†Ð½Ð¶ÐµÐ½ÐµÑ€ Ð’Ð¢Ð’ (Ð²Ð¸Ñ€Ð¾Ð±Ð½Ð¸Ñ‡Ð¾-Ñ‚ÐµÑ…Ð½Ñ–Ñ‡Ð½Ð¸Ð¹ Ð²Ñ–Ð´Ð´Ð»)","salary":"40 000 â€” 40 000 â‚´","company":"Ð®ÐœÐœÐ, Ð‘Ð£Ð”Ð†Ð’Ð•Ð›Ð¬ÐÐ ÐšÐžÐœÐŸÐÐÐ†Ð¯","page":56,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:32.002Z"},{"title":"ÐšÑ€Ð°Ð²Ñ‡Ð¸Ð½Ñ Ð¶Ñ–Ð½Ð¾Ñ‡Ð¾Ð³Ð¾ Ð¾Ð´ÑÐ³Ñƒ / ÐÐ°Ð´Ð¾Ð¼Ð½Ð¸Ñ†Ñ","salary":"25 000 â€” 30 000 â‚´","company":"SOLO","page":57,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:36.281Z"},{"title":"Ð‘Ñ–Ð·Ð½ÐµÑ-Ð°Ð½Ð°Ð»Ñ–Ñ‚Ð¸Ðº Ñ–Ð· Ð•Ð ÐŸ-ÑÐ¸ÑÑ‚ÐµÐ¼, Ð²Ð¿Ñ€Ð¾Ð²Ð°Ð´Ð¶ÑƒÐ²Ð°Ñ‡. (Ð†Ð¢)","salary":"50 000 â€” 80 000 â‚´","company":"ÐšÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ½Ðµ ÑƒÐ¿Ñ€Ð°Ð²Ð»Ñ–Ð½Ð½Ñ Ð±Ñ–Ð·Ð½ÐµÑ-Ð¿Ñ€Ð¾Ñ†ÐµÑÐ°Ð¼Ð¸, Ð¢ÐžÐ’","page":57,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:36.281Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ ÐºÐ°Ñ‚ Ð’","salary":"100 000 â€” 130 000 â‚´","company":"VKING TRANS","page":57,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:36.281Z"},{"title":"ÐœÐµÐ½ÐµÐ´Ð¶ÐµÑ€ Ð· Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ñƒ Ð¿Ð¾ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½Ñƒ","salary":"25 000 â€” 50 000 â‚´","company":"Ð¡Ñ…ÐµÐ¹Ð±Ð°Ð» Ð›.ÐŸ., Ð¤ÐžÐŸ","page":57,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:36.281Z"},{"title":"Ð’ÐžÐ”Ð†Ð™ Ð¢Ð†Ð ","salary":"80 000 â€” 120 000 â‚´","company":"Ð‘ÑƒÐ´Ñ–Ð½Ð²ÐµÑÑ‚ Ð†Ð¢","page":57,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:36.281Z"},{"title":"Project manager shop Etsy","salary":"15 000 â€” 30 000 â‚´","company":"ÐÐ¾ÑÐºÐ¾, Ð¤ÐžÐŸ","page":57,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:36.281Z"},{"title":"Ð’Ð¾Ð´Ñ–Ð¹ Ð½Ð° Ð°Ð²Ñ‚Ð¾ Ñ„Ñ–Ñ€Ð¼Ð¸, Ñ‚Ð°ÐºÑÑ–","salary":"40 000 â€” 50 000 â‚´","company":"ÐÐ³Ñ€Ð¾ ÐÐ¾Ð²Ð° Ð“Ñ€ÑƒÐ¿","page":57,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:36.281Z"},{"title":"Ð’Ñ–Ð´Ð´Ð°Ð»ÐµÐ½Ð° Ñ€Ð¾Ð±Ð¾Ñ‚Ð°","salary":"24 000 â€” 25 750 â‚´","company":"STV group","page":58,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:40.565Z"},{"title":"ÐœÐ°Ñ€ÐºÐµÑ‚Ð¾Ð»Ð¾Ð³","salary":"51 000 â€” 60 000 â‚´","company":"Intelligent Solution","page":58,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:40.565Z"},{"title":"Ð¡Ð¿ÐµÑ†Ñ–Ð°Ð»Ñ–ÑÑ‚ Ñ‚ÐµÑ…Ð½Ñ–Ñ‡Ð½Ð¾Ñ— Ð¿Ñ–Ð´Ñ‚Ñ€Ð¸Ð¼ÐºÐ¸ (Ñ„Ñ€Ð°Ð½Ñ†ÑƒÐ·ÑŒÐºÐ°)","salary":"35 000 â€” 45 000 â‚´","company":"Ð¢ÐµÑ…Ð½Ð¾ Ð¢Ñ€ÐµÐ¹Ð´ ÐšÐ¡, Ð¢ÐžÐ’","page":59,"red_zone":0,"blacklisted":0,"created_at":"2026-07-20T16:55:44.834Z"},{"title":"Ð¤Ð°Ñ…Ñ–Ð²ÐµÑ†ÑŒ Ð¿Ð¾ ÑÑ‚ÑÐ³Ð½ÐµÐ½Ð½ÑŽ Ð·Ð°Ð±Ð¾Ñ€Ð³Ð¾Ð²Ð°Ð½Ð¾ÑÑ‚Ñ– (Soft Collection/ 4-30 Ð´Ð½Ñ–Ð²)","salary":"50 000 â€” 80 000 â‚´","company":"SelfieCredit","page":59,"red_zone":1,"blacklisted":0,"created_at":"2026-07-20T16:55:44.834Z"}];
-let currentFilter = 'clean';
-
-function getBlacklist() {
-  try { return JSON.parse(localStorage.getItem('blacklist') || '[]'); } catch { return []; }
-}
-
-function setBlacklist(bl) {
-  localStorage.setItem('blacklist', JSON.stringify(bl));
-}
-
-function isBlacklisted(company) {
-  return getBlacklist().includes(company);
-}
-
-function addToBlacklist(company) {
-  const bl = getBlacklist();
-  if (!bl.includes(company)) { bl.push(company); setBlacklist(bl); }
-  renderJobs();
-}
-
-function removeFromBlacklist(company) {
-  let bl = getBlacklist();
-  bl = bl.filter(c => c !== company);
-  setBlacklist(bl);
-  renderJobs();
-}
-
-function setFilter(f, btn) {
-  currentFilter = f;
-  document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  renderJobs();
-}
-
-function filterJobs() {
-  renderJobs();
-}
-
-function renderJobs() {
-  const search = document.querySelector('.search').value.toLowerCase();
-  const bl = getBlacklist();
-  
-  let filtered = jobs.filter(j => {
-    if (currentFilter === 'clean' && (j.red_zone || bl.includes(j.company))) return false;
-    if (currentFilter === 'red' && !j.red_zone) return false;
-    if (currentFilter === 'blacklisted' && !bl.includes(j.company)) return false;
-    if (search && !j.title.toLowerCase().includes(search) && !j.company.toLowerCase().includes(search)) return false;
-    return true;
-  });
-
-  document.getElementById('showing').textContent = filtered.length + ' / ' + jobs.length;
-
-  const container = document.getElementById('jobs');
-  if (filtered.length === 0) {
-    container.innerHTML = '<div class="empty">Нічого не знайдено</div>';
-    return;
-  }
-
-  container.innerHTML = filtered.map((j, i) => {
-    const isBl = isBlacklisted(j.company);
-    const cls = j.red_zone ? 'red-zone' : (isBl ? 'blacklisted' : '');
-    const btn = isBl
-      ? '<button class="btn btn-restore" onclick="removeFromBlacklist(\'' + j.company.replace(/'/g,"\\'") + '\')">Відновити</button>'
-      : '<button class="btn btn-blacklist" onclick="addToBlacklist(\'' + j.company.replace(/'/g,"\\'") + '\')">Чорний список</button>';
-    
-    return '<div class="job-card ' + cls + '">'
-      + '<div class="job-info">'
-      + '<div class="job-title">' + j.title + '</div>'
-      + '<div class="job-salary">' + (j.salary || 'Не вказана') + '</div>'
-      + '<div class="job-company">' + (j.company || 'Не вказана') + '</div>'
-      + '<div class="job-page">Сторінка ' + (j.page || '?') + '</div>'
-      + '</div>'
-      + '<div class="job-actions">' + btn + '</div>'
-      + '</div>';
-  }).join('');
-}
-
-renderJobs();
-</script>
-</body>
-</html>
+<div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу зі знанням англійської мови</div>
+<div class="job-salary">70 000 — 150 000 ₴</div>
+<div class="job-company">QRS Europe</div>
+<div class="job-page">Сторінка 1</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('QRS Europe')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Вчитель англійської мови</div>
+<div class="job-salary">15 000 — 30 000 ₴</div>
+<div class="job-company">AntiSchool Online</div>
+<div class="job-page">Сторінка 1</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('AntiSchool Online')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер вступних занять з математики</div>
+<div class="job-salary">15 000 — 30 000 ₴</div>
+<div class="job-company">AntiSchool Online</div>
+<div class="job-page">Сторінка 1</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('AntiSchool Online')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу</div>
+<div class="job-salary">25 000 — 40 000 ₴</div>
+<div class="job-company">HR-Service</div>
+<div class="job-page">Сторінка 1</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('HR-Service')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з підбору освітніх курсів</div>
+<div class="job-salary">16 000 — 40 000 ₴</div>
+<div class="job-company">JustSchool</div>
+<div class="job-page">Сторінка 1</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('JustSchool')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер по роботі з клієнтами (USA)</div>
+<div class="job-salary">44 000 — 52 000 ₴</div>
+<div class="job-company">Supplax</div>
+<div class="job-page">Сторінка 2</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Supplax')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Sales manager в онлайн-школу англійської (гарячі заявки клієнтів)</div>
+<div class="job-salary">35 000 — 75 000 ₴</div>
+<div class="job-company">Study Less</div>
+<div class="job-page">Сторінка 2</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Study Less')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Marketing manager B2C</div>
+<div class="job-salary">45 000 — 50 000 ₴</div>
+<div class="job-company">Englishdom</div>
+<div class="job-page">Сторінка 2</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Englishdom')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Customer support manager (ENG)</div>
+<div class="job-salary">45 000 — 55 000 ₴</div>
+<div class="job-company">King Group</div>
+<div class="job-page">Сторінка 2</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('King Group')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Sales Manager (medical services)</div>
+<div class="job-salary">65 000 — 95 000 ₴</div>
+<div class="job-company">Bookimed Limited</div>
+<div class="job-page">Сторінка 2</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Bookimed Limited')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з презентації та продажу курсів</div>
+<div class="job-salary">16 000 — 40 000 ₴</div>
+<div class="job-company">JustSchool</div>
+<div class="job-page">Сторінка 3</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('JustSchool')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу (оператор)</div>
+<div class="job-salary">25 000 — 60 000 ₴</div>
+<div class="job-company">Халатах Д.С., ФОП</div>
+<div class="job-page">Сторінка 3</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Халатах Д.С., ФОП')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу та реєстрації</div>
+<div class="job-salary">14 500 — 24 500 ₴</div>
+<div class="job-company">ЕКСПРЕС ЛІНІЯ, ТОВ</div>
+<div class="job-page">Сторінка 3</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ЕКСПРЕС ЛІНІЯ, ТОВ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер call-центру (запис на вступні уроки)</div>
+<div class="job-salary">17 000 — 26 000 ₴</div>
+<div class="job-company">Компанія не вказана</div>
+<div class="job-page">Сторінка 3</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Категорійний менеджер / менеджер із розвитку партнерського асортименту</div>
+<div class="job-salary">30 000 — 150 000 ₴</div>
+<div class="job-company">ІМЕКС МАКС</div>
+<div class="job-page">Сторінка 4</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ІМЕКС МАКС')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Sales Team Lead</div>
+<div class="job-salary">65 000 — 90 000 ₴</div>
+<div class="job-company">Прасолов та партнери, Юридична компанія</div>
+<div class="job-page">Сторінка 4</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Прасолов та партнери, Юридична компанія')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Оператор контакт центру / Менеджер з продажу</div>
+<div class="job-salary">18 000 — 40 000 ₴</div>
+<div class="job-company">Sales Pulse</div>
+<div class="job-page">Сторінка 5</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Sales Pulse')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Digital-копірайтер (-ка)</div>
+<div class="job-salary">27 000 — 45 000 ₴</div>
+<div class="job-company">Industrial Media</div>
+<div class="job-page">Сторінка 5</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Industrial Media')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Head of Traffic/ Digital Marketing</div>
+<div class="job-salary">80 000 — 120 000 ₴</div>
+<div class="job-company">Прасолов та партнери, Юридична компанія</div>
+<div class="job-page">Сторінка 5</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Прасолов та партнери, Юридична компанія')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Oracle-програміст</div>
+<div class="job-salary">50 000 — 100 000 ₴</div>
+<div class="job-company">УКР.ПЕЙ, ТОВ</div>
+<div class="job-page">Сторінка 5</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('УКР.ПЕЙ, ТОВ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Координатор бек-офісу відділу продажів</div>
+<div class="job-salary">35 000 — 45 000 ₴</div>
+<div class="job-company">Брокбрідж</div>
+<div class="job-page">Сторінка 6</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Брокбрідж')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Агент з обслуговування клієнтів телефоном (вхідна лінія)</div>
+<div class="job-salary">28 843 — 33 004 ₴</div>
+<div class="job-company">ПриватБанк</div>
+<div class="job-page">Сторінка 7</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ПриватБанк')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу інтернет-магазину</div>
+<div class="job-salary">25 000 — 40 000 ₴</div>
+<div class="job-company">Benefit</div>
+<div class="job-page">Сторінка 8</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Benefit')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Спеціаліст технічної підтримки / Helpdesk Enginee</div>
+<div class="job-salary">30 000 — 45 000 ₴</div>
+<div class="job-company">Tax Easy, Кадрове агенство</div>
+<div class="job-page">Сторінка 9</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Tax Easy, Кадрове агенство')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу автозапчастин Japan-cars.com.ua</div>
+<div class="job-salary">45 000 — 85 000 ₴</div>
+<div class="job-company">JAPAN-CARS.com.ua</div>
+<div class="job-page">Сторінка 9</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('JAPAN-CARS.com.ua')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Product, категорійний менеджер</div>
+<div class="job-salary">30 000 — 50 000 ₴</div>
+<div class="job-company">INTBOARD</div>
+<div class="job-page">Сторінка 10</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('INTBOARD')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Тестувальник ПО (з реальним досвідом)</div>
+<div class="job-salary">25 000 — 40 000 ₴</div>
+<div class="job-company">УКР.ПЕЙ, ТОВ</div>
+<div class="job-page">Сторінка 11</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('УКР.ПЕЙ, ТОВ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер інтернет-магазину</div>
+<div class="job-salary">25 000 — 35 000 ₴</div>
+<div class="job-company">ФОП Бойваленко В. Ю.</div>
+<div class="job-page">Сторінка 12</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ФОП Бойваленко В. Ю.')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Sales-менеджер (освітні послуги)</div>
+<div class="job-salary">60 000 — 120 000 ₴</div>
+<div class="job-company">Конс на Бі$</div>
+<div class="job-page">Сторінка 12</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Конс на Бі$')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">4D Construction Project Scheduler</div>
+<div class="job-salary">60 000 — 100 000 ₴</div>
+<div class="job-company">Ehvert</div>
+<div class="job-page">Сторінка 13</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Ehvert')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Team lead marketing (Yelp, USA)</div>
+<div class="job-salary">50 000 — 60 000 ₴</div>
+<div class="job-company">Supplax</div>
+<div class="job-page">Сторінка 13</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Supplax')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Фахівець з телемаркетингу</div>
+<div class="job-salary">30 000 — 35 000 ₴</div>
+<div class="job-company">SelfieCredit</div>
+<div class="job-page">Сторінка 14</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SelfieCredit')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">PRODUCT OWNER (Affiliate marketing)</div>
+<div class="job-salary">80 000 — 85 000 ₴</div>
+<div class="job-company">DMND</div>
+<div class="job-page">Сторінка 14</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('DMND')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Програміст BAS, BAF у Рівне</div>
+<div class="job-salary">60 000 — 80 000 ₴</div>
+<div class="job-company">Atlantmarket</div>
+<div class="job-page">Сторінка 15</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Atlantmarket')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер по закупкам</div>
+<div class="job-salary">30 000 — 40 000 ₴</div>
+<div class="job-company">НОТА ТРЕЙД, ТОВ</div>
+<div class="job-page">Сторінка 16</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('НОТА ТРЕЙД, ТОВ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер супроводу продажів (B2B, енергетичне обладнання)</div>
+<div class="job-salary">25 000 — 30 000 ₴</div>
+<div class="job-company">НОТА ТРЕЙД, ТОВ</div>
+<div class="job-page">Сторінка 16</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('НОТА ТРЕЙД, ТОВ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Аналітик (Marketing Department)</div>
+<div class="job-salary">30 000 — 35 000 ₴</div>
+<div class="job-company">PLAMIGO</div>
+<div class="job-page">Сторінка 18</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('PLAMIGO')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Оздоблювач</div>
+<div class="job-salary">60 000 — 90 000 ₴</div>
+<div class="job-company">Домова служба, ТОВ</div>
+<div class="job-page">Сторінка 19</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Домова служба, ТОВ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу (В2В) зі знанням німецької або англійської мови</div>
+<div class="job-salary">30 000 — 70 000 ₴</div>
+<div class="job-company">FLEXOGROUP</div>
+<div class="job-page">Сторінка 19</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('FLEXOGROUP')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Digital-маркетолог/Google Ads Specialist</div>
+<div class="job-salary">65 000 — 100 000 ₴</div>
+<div class="job-company">Hay Credito</div>
+<div class="job-page">Сторінка 22</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Hay Credito')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Middle SEO Specialist (iGaming)</div>
+<div class="job-salary">50 000 — 70 000 ₴</div>
+<div class="job-company">Flint Group</div>
+<div class="job-page">Сторінка 23</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Flint Group')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Team Lead Seo</div>
+<div class="job-salary">80 000 — 100 000 ₴</div>
+<div class="job-company">Flint Group</div>
+<div class="job-page">Сторінка 23</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Flint Group')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Адміністратор мобільної медичної бригади</div>
+<div class="job-salary">35 000 — 48 000 ₴</div>
+<div class="job-company">Докос медикал</div>
+<div class="job-page">Сторінка 24</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Докос медикал')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажів зі знанням польської В2+(Віддалено)</div>
+<div class="job-salary">55 000 — 80 000 ₴</div>
+<div class="job-company">Agentify Ltd</div>
+<div class="job-page">Сторінка 24</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Agentify Ltd')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу</div>
+<div class="job-salary">35 000 — 45 000 ₴</div>
+<div class="job-company">In-O - information technologies</div>
+<div class="job-page">Сторінка 27</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('In-O - information technologies')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Finance System Automation Lead (BAF/BAS ERP)</div>
+<div class="job-salary">120 000 — 130 000 ₴</div>
+<div class="job-company">Ksisters</div>
+<div class="job-page">Сторінка 27</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Ksisters')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу B2B</div>
+<div class="job-salary">30 000 — 90 000 ₴</div>
+<div class="job-company">DSN Group</div>
+<div class="job-page">Сторінка 28</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('DSN Group')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">HR People Partner (IT company)</div>
+<div class="job-salary">55 000 — 70 000 ₴</div>
+<div class="job-company">Personalities, HR Company</div>
+<div class="job-page">Сторінка 30</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Personalities, HR Company')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">B2C Marketing Manager</div>
+<div class="job-salary">45 000 — 50 000 ₴</div>
+<div class="job-company">Englishdom</div>
+<div class="job-page">Сторінка 30</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Englishdom')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу навчальних програм для підприємців</div>
+<div class="job-salary">60 000 — 100 000 ₴</div>
+<div class="job-company">Бізнес-Конструктор</div>
+<div class="job-page">Сторінка 30</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Бізнес-Конструктор')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу</div>
+<div class="job-salary">50 000 — 120 000 ₴</div>
+<div class="job-company">Прасолов та партнери, Юридична компанія</div>
+<div class="job-page">Сторінка 31</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Прасолов та партнери, Юридична компанія')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Головний бухгалтер</div>
+<div class="job-salary">65 000 — 80 000 ₴</div>
+<div class="job-company">Unifinance</div>
+<div class="job-page">Сторінка 31</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Unifinance')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Technical Support Representative</div>
+<div class="job-salary">42 400 — 46 800 ₴</div>
+<div class="job-company">Pexly</div>
+<div class="job-page">Сторінка 32</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Pexly')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Помічник із прийому замовлень, часткова зайнятість</div>
+<div class="job-salary">20 000 — 24 000 ₴</div>
+<div class="job-company">Конверсїя, ТОВ</div>
+<div class="job-page">Сторінка 32</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Конверсїя, ТОВ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Приватний детектив, регіональний представник детективної агенції, Тернопіль</div>
+<div class="job-salary">40 000 — 50 000 ₴</div>
+<div class="job-company">Конрад, Детективна агенція</div>
+<div class="job-page">Сторінка 33</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Конрад, Детективна агенція')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Бухгалтер / фінансовий аналітик (дистанційно)</div>
+<div class="job-salary">20 000 — 30 000 ₴</div>
+<div class="job-company">GeoBent</div>
+<div class="job-page">Сторінка 33</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('GeoBent')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">International Logistics/Dispatch Support Technician in Vyshneve/Kyiv</div>
+<div class="job-salary">20 000 — 40 000 ₴</div>
+<div class="job-company">USKO Express Inc</div>
+<div class="job-page">Сторінка 34</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('USKO Express Inc')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Media Buyer Nutra (Google/Facebook)</div>
+<div class="job-salary">100 000 — 200 000 ₴</div>
+<div class="job-company">Street Traffic</div>
+<div class="job-page">Сторінка 34</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Street Traffic')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Керівник call center (LATAM | Іспанська мова | Remote)</div>
+<div class="job-salary">40 000 — 80 000 ₴</div>
+<div class="job-company">1CallCenter</div>
+<div class="job-page">Сторінка 34</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('1CallCenter')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Рекрутер зі знанням словацької, чеської мови | Віддалено</div>
+<div class="job-salary">25 000 — 36 000 ₴</div>
+<div class="job-company">1CallCenter</div>
+<div class="job-page">Сторінка 34</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('1CallCenter')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Technical Support Engineer</div>
+<div class="job-salary">35 000 — 50 000 ₴</div>
+<div class="job-company">Velpox</div>
+<div class="job-page">Сторінка 35</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Velpox')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Оператор call центру телекомунікації</div>
+<div class="job-salary">10 000 — 35 000 ₴</div>
+<div class="job-company">SBT</div>
+<div class="job-page">Сторінка 36</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SBT')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджера з продажу мастильних матеріалів</div>
+<div class="job-salary">15 000 — 45 000 ₴</div>
+<div class="job-company">АВТОБАН ОІЛ, ТОВ</div>
+<div class="job-page">Сторінка 38</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('АВТОБАН ОІЛ, ТОВ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Лідогенератор B2B Lead Generation Specialist SaaS, Instagram</div>
+<div class="job-salary">15 000 — 30 000 ₴</div>
+<div class="job-company">Богуславська Л.В., ФОП</div>
+<div class="job-page">Сторінка 39</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Богуславська Л.В., ФОП')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Дистанційно</div>
+<div class="job-salary">20 000 — 35 000 ₴</div>
+<div class="job-company">Все для ремонту та будівництва</div>
+<div class="job-page">Сторінка 39</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Все для ремонту та будівництва')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Оператор з обробки зображень</div>
+<div class="job-salary">7 040 — 8 500 ₴</div>
+<div class="job-company">ДАТАХАБ. АІ, ТОВ</div>
+<div class="job-page">Сторінка 39</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ДАТАХАБ. АІ, ТОВ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Майстер з ремонту ПК</div>
+<div class="job-salary">30 000 — 70 000 ₴</div>
+<div class="job-company">КомПом</div>
+<div class="job-page">Сторінка 39</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('КомПом')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Спеціаліст з пошуку та обробки даних / Data Research (зі знанням англійської)</div>
+<div class="job-salary">14 400 — 27 200 ₴</div>
+<div class="job-company">SSCU Data Acquisition and Validation</div>
+<div class="job-page">Сторінка 40</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SSCU Data Acquisition and Validation')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу</div>
+<div class="job-salary">50 000 — 80 000 ₴</div>
+<div class="job-company">ТОВ ФРЕШ МІЛК</div>
+<div class="job-page">Сторінка 40</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ТОВ ФРЕШ МІЛК')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">AutoCad technician</div>
+<div class="job-salary">30 000 — 30 000 ₴</div>
+<div class="job-company">Av interiors</div>
+<div class="job-page">Сторінка 40</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Av interiors')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Відео-креатор / Обличчя бренду (TikTok / Instagram)</div>
+<div class="job-salary">25 000 — 35 000 ₴</div>
+<div class="job-company">It Rage</div>
+<div class="job-page">Сторінка 40</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('It Rage')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Media buyer</div>
+<div class="job-salary">40 000 — 80 000 ₴</div>
+<div class="job-company">Avion</div>
+<div class="job-page">Сторінка 41</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Avion')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу</div>
+<div class="job-salary">25 000 — 60 000 ₴</div>
+<div class="job-company">Комфорт текс</div>
+<div class="job-page">Сторінка 41</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Комфорт текс')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу</div>
+<div class="job-salary">35 000 — 65 000 ₴</div>
+<div class="job-company">Cheffcall</div>
+<div class="job-page">Сторінка 41</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Cheffcall')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Бухгалтер</div>
+<div class="job-salary">40 000 — 120 000 ₴</div>
+<div class="job-company">КОНСТАНТА-СТРОЙ, ТОВ, НВФ</div>
+<div class="job-page">Сторінка 42</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('КОНСТАНТА-СТРОЙ, ТОВ, НВФ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Автокрановщик автокрана XCMG, Zoomlion (25, 30, 50 т)</div>
+<div class="job-salary">95 000 — 140 000 ₴</div>
+<div class="job-company">КОНСТАНТА-СТРОЙ, ТОВ, НВФ</div>
+<div class="job-page">Сторінка 42</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('КОНСТАНТА-СТРОЙ, ТОВ, НВФ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Freight Dispatcher (Dry Van, Reefer, USA)</div>
+<div class="job-salary">180 000 — 330 000 ₴</div>
+<div class="job-company">LNG Holding</div>
+<div class="job-page">Сторінка 42</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('LNG Holding')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Будівельник оптоволоконних мереж</div>
+<div class="job-salary">40 000 — 60 000 ₴</div>
+<div class="job-company">Провайд</div>
+<div class="job-page">Сторінка 42</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Провайд')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Бізнес- асистент (USA)</div>
+<div class="job-salary">34 000 — 56 000 ₴</div>
+<div class="job-company">Supplax</div>
+<div class="job-page">Сторінка 43</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Supplax')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Фахівець контакт-центру зі знанням англійської мови (дистанційно)</div>
+<div class="job-salary">21 000 — 25 000 ₴</div>
+<div class="job-company">Piraeus Bank Ukraine</div>
+<div class="job-page">Сторінка 43</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Piraeus Bank Ukraine')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Лідогенератор який/яка грає в теніс або падел</div>
+<div class="job-salary">30 000 — 50 000 ₴</div>
+<div class="job-company">Imperia HR</div>
+<div class="job-page">Сторінка 44</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Imperia HR')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Віддалена робота</div>
+<div class="job-salary">30 000 — 60 000 ₴</div>
+<div class="job-company">Продаж посуду та текстилю</div>
+<div class="job-page">Сторінка 44</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Продаж посуду та текстилю')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">1 день тому</div>
+<div class="job-salary">25 000 — 50 000 ₴</div>
+<div class="job-company">Попандопуло Т.В., ФОП</div>
+<div class="job-page">Сторінка 45</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Попандопуло Т.В., ФОП')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу</div>
+<div class="job-salary">40 000 — 65 000 ₴</div>
+<div class="job-company">Cheffcall</div>
+<div class="job-page">Сторінка 45</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Cheffcall')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу</div>
+<div class="job-salary">20 000 — 40 000 ₴</div>
+<div class="job-company">TattooBestShop</div>
+<div class="job-page">Сторінка 45</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('TattooBestShop')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу (Малиновський р-н)</div>
+<div class="job-salary">40 000 — 100 000 ₴</div>
+<div class="job-company">Мобільна Оптика</div>
+<div class="job-page">Сторінка 45</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Мобільна Оптика')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер по роботі з клієнтами</div>
+<div class="job-salary">18 000 — 26 000 ₴</div>
+<div class="job-company">Efrat</div>
+<div class="job-page">Сторінка 46</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Efrat')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер із розвитку партнерів (B2B)</div>
+<div class="job-salary">15 000 — 30 000 ₴</div>
+<div class="job-company">МиаТис</div>
+<div class="job-page">Сторінка 46</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('МиаТис')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Контент-креатор TikTok / SMM TikTok / Faceless TikTok Content Creator</div>
+<div class="job-salary">15 000 — 25 000 ₴</div>
+<div class="job-company">Alpenor</div>
+<div class="job-page">Сторінка 46</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Alpenor')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Медичний представник — онлайн-візити, вільний графік | «Інститут Фарм Промоції»</div>
+<div class="job-salary">40 000 — 50 000 ₴</div>
+<div class="job-company">ІНСТИТУТ ФАРМ ПРОМОЦІЇ</div>
+<div class="job-page">Сторінка 46</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ІНСТИТУТ ФАРМ ПРОМОЦІЇ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Офіцер групи розвідки-капітан</div>
+<div class="job-salary">20 000 — 120 000 ₴</div>
+<div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
+<div class="job-page">Сторінка 47</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Бухгалтер</div>
+<div class="job-salary">23 000 — 27 000 ₴</div>
+<div class="job-company">Lawyer Accountant</div>
+<div class="job-page">Сторінка 47</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Lawyer Accountant')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Офіцер відділення оперативного управління-майор</div>
+<div class="job-salary">20 000 — 120 000 ₴</div>
+<div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
+<div class="job-page">Сторінка 47</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Старший науковий співробітник НДВ НДУ-підполковник</div>
+<div class="job-salary">20 000 — 120 000 ₴</div>
+<div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
+<div class="job-page">Сторінка 47</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Заступник начальника факультету з навчальної та наукової роботи- начальник навчальної частини</div>
+<div class="job-salary">20 000 — 120 000 ₴</div>
+<div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
+<div class="job-page">Сторінка 47</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Начальник розвідки штабу -майор</div>
+<div class="job-salary">20 000 — 120 000 ₴</div>
+<div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
+<div class="job-page">Сторінка 47</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Доцент-пiдполковник</div>
+<div class="job-salary">20 000 — 120 000 ₴</div>
+<div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
+<div class="job-page">Сторінка 47</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Прибиральниця клінер</div>
+<div class="job-salary">18 000 — 28 000 ₴</div>
+<div class="job-company">Clean force</div>
+<div class="job-page">Сторінка 48</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Clean force')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Вчитель української мови та літератури</div>
+<div class="job-salary">10 000 — 25 000 ₴</div>
+<div class="job-company">Кириченко Ю., ФОП</div>
+<div class="job-page">Сторінка 48</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Кириченко Ю., ФОП')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Логіст, менеджер з транспортної логістики</div>
+<div class="job-salary">28 000 — 30 000 ₴</div>
+<div class="job-company">Zakaz.ua</div>
+<div class="job-page">Сторінка 49</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Zakaz.ua')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Customer Support Representative</div>
+<div class="job-salary">38 000 — 45 000 ₴</div>
+<div class="job-company">Helpware</div>
+<div class="job-page">Сторінка 50</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Helpware')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">SMM Project Manager</div>
+<div class="job-salary">25 000 — 35 000 ₴</div>
+<div class="job-company">BLACK SMM Agency</div>
+<div class="job-page">Сторінка 50</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('BLACK SMM Agency')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Оператор на вхідну лінію</div>
+<div class="job-salary">27 000 — 30 000 ₴</div>
+<div class="job-company">CreditKasa</div>
+<div class="job-page">Сторінка 50</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('CreditKasa')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">English Teacher</div>
+<div class="job-salary">15 000 — 30 000 ₴</div>
+<div class="job-company">AntiSchool Online</div>
+<div class="job-page">Сторінка 50</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('AntiSchool Online')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу (В2В, теплий трафік)</div>
+<div class="job-salary">20 000 — 45 000 ₴</div>
+<div class="job-company">INTBOARD</div>
+<div class="job-page">Сторінка 51</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('INTBOARD')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу в онлайн-школу англійської</div>
+<div class="job-salary">35 000 — 70 000 ₴</div>
+<div class="job-company">Study Less</div>
+<div class="job-page">Сторінка 51</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Study Less')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Віддалена робота</div>
+<div class="job-salary">13 500 — 30 300 ₴</div>
+<div class="job-company">TP Ukraine</div>
+<div class="job-page">Сторінка 51</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('TP Ukraine')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">HR Assistant/Recruiter (Remote)</div>
+<div class="job-salary">35 000 — 50 000 ₴</div>
+<div class="job-company">LNG Holding</div>
+<div class="job-page">Сторінка 52</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('LNG Holding')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Віддалена робота</div>
+<div class="job-salary">45 000 — 70 000 ₴</div>
+<div class="job-company">ВБА, ООО</div>
+<div class="job-page">Сторінка 52</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ВБА, ООО')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Адміністратор, організатор турнірів (Падел-клуб, padel tennis, теніс)</div>
+<div class="job-salary">30 000 — 50 000 ₴</div>
+<div class="job-company">Imperia HR</div>
+<div class="job-page">Сторінка 53</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Imperia HR')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Recruiter</div>
+<div class="job-salary">25 000 — 32 000 ₴</div>
+<div class="job-company">MK:translations</div>
+<div class="job-page">Сторінка 54</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('MK:translations')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Фахівець з відділу кадрів</div>
+<div class="job-salary">10 000 — 15 000 ₴</div>
+<div class="job-company">BigFishCompany</div>
+<div class="job-page">Сторінка 54</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('BigFishCompany')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Вчитель математики</div>
+<div class="job-salary">18 000 — 36 000 ₴</div>
+<div class="job-company">Математична Школа Чорного</div>
+<div class="job-page">Сторінка 54</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Математична Школа Чорного')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Оператор чату</div>
+<div class="job-salary">25 000 — 28 000 ₴</div>
+<div class="job-company">Vakantro</div>
+<div class="job-page">Сторінка 54</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Vakantro')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">UI/UX Designer</div>
+<div class="job-salary">20 000 — 35 000 ₴</div>
+<div class="job-company">Bravilo</div>
+<div class="job-page">Сторінка 54</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Bravilo')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Python Developer</div>
+<div class="job-salary">25 000 — 30 000 ₴</div>
+<div class="job-company">Bravilo</div>
+<div class="job-page">Сторінка 54</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Bravilo')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Фахівець з організації навчальної роботи</div>
+<div class="job-salary">22 000 — 22 000 ₴</div>
+<div class="job-company">Харківський університет, ТОВ</div>
+<div class="job-page">Сторінка 55</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Харківський університет, ТОВ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Account Manager (100% Remote • No Cold Calls)</div>
+<div class="job-salary">36 000 — 55 000 ₴</div>
+<div class="job-company">Компания Keyapp</div>
+<div class="job-page">Сторінка 55</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Компания Keyapp')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу, В2В</div>
+<div class="job-salary">15 000 — 40 000 ₴</div>
+<div class="job-company">GURTOVA</div>
+<div class="job-page">Сторінка 56</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('GURTOVA')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Віддалена робота</div>
+<div class="job-salary">7 000 — 18 000 ₴</div>
+<div class="job-company">Ліпісівіцька А.О., ФОП</div>
+<div class="job-page">Сторінка 56</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Ліпісівіцька А.О., ФОП')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу</div>
+<div class="job-salary">8 000 — 15 000 ₴</div>
+<div class="job-company">ALOHA Language School</div>
+<div class="job-page">Сторінка 56</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ALOHA Language School')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Інженер ВТВ (виробничо-технічний віддл)</div>
+<div class="job-salary">40 000 — 40 000 ₴</div>
+<div class="job-company">ЮММА, БУДІВЕЛЬНА КОМПАНІЯ</div>
+<div class="job-page">Сторінка 56</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ЮММА, БУДІВЕЛЬНА КОМПАНІЯ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Кравчиня жіночого одягу / Надомниця</div>
+<div class="job-salary">25 000 — 30 000 ₴</div>
+<div class="job-company">SOLO</div>
+<div class="job-page">Сторінка 57</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SOLO')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Бізнес-аналітик із ЕРП-систем, впроваджувач. (ІТ)</div>
+<div class="job-salary">50 000 — 80 000 ₴</div>
+<div class="job-company">Комплексне управління бізнес-процесами, ТОВ</div>
+<div class="job-page">Сторінка 57</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Комплексне управління бізнес-процесами, ТОВ')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Менеджер з продажу по телефону</div>
+<div class="job-salary">25 000 — 50 000 ₴</div>
+<div class="job-company">Схейбал Л.П., ФОП</div>
+<div class="job-page">Сторінка 57</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Схейбал Л.П., ФОП')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Project manager shop Etsy</div>
+<div class="job-salary">15 000 — 30 000 ₴</div>
+<div class="job-company">Носко, ФОП</div>
+<div class="job-page">Сторінка 57</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Носко, ФОП')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Віддалена робота</div>
+<div class="job-salary">24 000 — 25 750 ₴</div>
+<div class="job-company">STV group</div>
+<div class="job-page">Сторінка 58</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('STV group')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Маркетолог</div>
+<div class="job-salary">51 000 — 60 000 ₴</div>
+<div class="job-company">Intelligent Solution</div>
+<div class="job-page">Сторінка 58</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Intelligent Solution')">Чорний список</button></div>
+</div><div class="job-card ">
+<div class="job-info">
+<div class="job-title">Спеціаліст технічної підтримки (французька)</div>
+<div class="job-salary">35 000 — 45 000 ₴</div>
+<div class="job-company">Техно Трейд КС, ТОВ</div>
+<div class="job-page">Сторінка 59</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Техно Трейд КС, ТОВ')">Чорний список</button></div>
+</div></body></html>
