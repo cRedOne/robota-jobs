@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Robota.ua — Вакансії</title>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Robota.ua — Вакансии</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#1a1a2e;color:#e0e0e0;padding:20px;max-width:1200px;margin:0 auto}
@@ -36,18 +36,19 @@ h1{color:#a0a0c0;margin-bottom:5px;font-size:28px}
 .search:focus{border-color:#a0a0c0}
 .search::placeholder{color:#666}
 </style></head><body>
-<h1>Robota.ua — Вакансії</h1>
+<h1>Robota.ua — Вакансии <span id="showing" style="background:#252540;padding:4px 10px;border-radius:15px;font-size:12px;color:#888;margin-left:10px"></span></h1>
 <div class="stats">
-<div class="stat"><b>192</b> всього</div>
-<div class="stat" style="color:#4ecca3"><b>129</b> чистих</div>
-<div class="stat" style="color:#e94560"><b>63</b> червона зона</div>
-<div class="stat" style="color:#666"><b>0</b> чорний список</div>
+<div class="stat"><b>192</b> всего</div>
+<div class="stat" style="color:#4ecca3"><b>129</b> чистых</div>
+<div class="stat" style="color:#e94560"><b>63</b> красная зона</div>
+<div class="stat" style="color:#666"><b>0</b> чёрный список</div>
 </div>
+<input type="text" class="search" placeholder="Поиск по названию, компании..." oninput="renderJobs()">
 <div class="filters">
-<button class="active" onclick="setFilter('clean',this)">Чисті (129)</button>
-<button onclick="setFilter('all',this)">Всі (192)</button>
-<button onclick="setFilter('red',this)">Червоні (63)</button>
-<button onclick="setFilter('blacklisted',this)">Чорний список (0)</button>
+<button class="active" onclick="setFilter('clean',this)">Чистые (129)</button>
+<button onclick="setFilter('all',this)">Все (192)</button>
+<button onclick="setFilter('red',this)">Красные (63)</button>
+<button onclick="setFilter('blacklisted',this)">Чёрный список (0)</button>
 </div>
 <div id="jobs">
 <div class="job-card ">
@@ -55,1033 +56,1537 @@ h1{color:#a0a0c0;margin-bottom:5px;font-size:28px}
 <div class="job-title">Менеджер з продажу зі знанням англійської мови</div>
 <div class="job-salary">70 000 — 150 000 ₴</div>
 <div class="job-company">QRS Europe</div>
-<div class="job-page">Сторінка 1</div>
+<div class="job-page">Страница 1</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('QRS Europe')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('QRS Europe')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Вчитель англійської мови</div>
 <div class="job-salary">15 000 — 30 000 ₴</div>
 <div class="job-company">AntiSchool Online</div>
-<div class="job-page">Сторінка 1</div>
+<div class="job-page">Страница 1</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('AntiSchool Online')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('AntiSchool Online')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Викладач англійської мови для дітей</div>
+<div class="job-salary">15 000 — 30 000 ₴</div>
+<div class="job-company">AntiSchool Online</div>
+<div class="job-page">Страница 1</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('AntiSchool Online')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер вступних занять з математики</div>
 <div class="job-salary">15 000 — 30 000 ₴</div>
 <div class="job-company">AntiSchool Online</div>
-<div class="job-page">Сторінка 1</div>
+<div class="job-page">Страница 1</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('AntiSchool Online')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('AntiSchool Online')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Репетитор англійської мови (вечір)</div>
+<div class="job-salary">20 000 — 45 000 ₴</div>
+<div class="job-company">JustSchool</div>
+<div class="job-page">Страница 1</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('JustSchool')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу</div>
 <div class="job-salary">25 000 — 40 000 ₴</div>
 <div class="job-company">HR-Service</div>
-<div class="job-page">Сторінка 1</div>
+<div class="job-page">Страница 1</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('HR-Service')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('HR-Service')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з підбору освітніх курсів</div>
 <div class="job-salary">16 000 — 40 000 ₴</div>
 <div class="job-company">JustSchool</div>
-<div class="job-page">Сторінка 1</div>
+<div class="job-page">Страница 1</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('JustSchool')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('JustSchool')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер по роботі з клієнтами (USA)</div>
 <div class="job-salary">44 000 — 52 000 ₴</div>
 <div class="job-company">Supplax</div>
-<div class="job-page">Сторінка 2</div>
+<div class="job-page">Страница 2</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Supplax')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Supplax')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Sales manager в онлайн-школу англійської (гарячі заявки клієнтів)</div>
 <div class="job-salary">35 000 — 75 000 ₴</div>
 <div class="job-company">Study Less</div>
-<div class="job-page">Сторінка 2</div>
+<div class="job-page">Страница 2</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Study Less')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Study Less')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Вантажник на маршрут</div>
+<div class="job-salary">31 000 — 34 000 ₴</div>
+<div class="job-company">Чиста Вода</div>
+<div class="job-page">Страница 2</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Чиста Вода')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Marketing manager B2C</div>
 <div class="job-salary">45 000 — 50 000 ₴</div>
 <div class="job-company">Englishdom</div>
-<div class="job-page">Сторінка 2</div>
+<div class="job-page">Страница 2</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Englishdom')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Englishdom')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Customer support manager (ENG)</div>
 <div class="job-salary">45 000 — 55 000 ₴</div>
 <div class="job-company">King Group</div>
-<div class="job-page">Сторінка 2</div>
+<div class="job-page">Страница 2</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('King Group')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('King Group')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Sales Manager (medical services)</div>
 <div class="job-salary">65 000 — 95 000 ₴</div>
 <div class="job-company">Bookimed Limited</div>
-<div class="job-page">Сторінка 2</div>
+<div class="job-page">Страница 2</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Bookimed Limited')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Bookimed Limited')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з презентації та продажу курсів</div>
 <div class="job-salary">16 000 — 40 000 ₴</div>
 <div class="job-company">JustSchool</div>
-<div class="job-page">Сторінка 3</div>
+<div class="job-page">Страница 3</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('JustSchool')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('JustSchool')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу (оператор)</div>
 <div class="job-salary">25 000 — 60 000 ₴</div>
 <div class="job-company">Халатах Д.С., ФОП</div>
-<div class="job-page">Сторінка 3</div>
+<div class="job-page">Страница 3</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Халатах Д.С., ФОП')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Халатах Д.С., ФОП')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу та реєстрації</div>
 <div class="job-salary">14 500 — 24 500 ₴</div>
 <div class="job-company">ЕКСПРЕС ЛІНІЯ, ТОВ</div>
-<div class="job-page">Сторінка 3</div>
+<div class="job-page">Страница 3</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ЕКСПРЕС ЛІНІЯ, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ЕКСПРЕС ЛІНІЯ, ТОВ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер call-центру (запис на вступні уроки)</div>
 <div class="job-salary">17 000 — 26 000 ₴</div>
-<div class="job-company">Компанія не вказана</div>
-<div class="job-page">Сторінка 3</div>
+<div class="job-company">Компания не указана</div>
+<div class="job-page">Страница 3</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Категорійний менеджер / менеджер із розвитку партнерського асортименту</div>
 <div class="job-salary">30 000 — 150 000 ₴</div>
 <div class="job-company">ІМЕКС МАКС</div>
-<div class="job-page">Сторінка 4</div>
+<div class="job-page">Страница 4</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ІМЕКС МАКС')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ІМЕКС МАКС')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Sales Team Lead</div>
 <div class="job-salary">65 000 — 90 000 ₴</div>
 <div class="job-company">Прасолов та партнери, Юридична компанія</div>
-<div class="job-page">Сторінка 4</div>
+<div class="job-page">Страница 4</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Прасолов та партнери, Юридична компанія')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Прасолов та партнери, Юридична компанія')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Оператор контакт центру / Менеджер з продажу</div>
 <div class="job-salary">18 000 — 40 000 ₴</div>
 <div class="job-company">Sales Pulse</div>
-<div class="job-page">Сторінка 5</div>
+<div class="job-page">Страница 5</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Sales Pulse')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Sales Pulse')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Digital-копірайтер (-ка)</div>
 <div class="job-salary">27 000 — 45 000 ₴</div>
 <div class="job-company">Industrial Media</div>
-<div class="job-page">Сторінка 5</div>
+<div class="job-page">Страница 5</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Industrial Media')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Industrial Media')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Head of Traffic/ Digital Marketing</div>
 <div class="job-salary">80 000 — 120 000 ₴</div>
 <div class="job-company">Прасолов та партнери, Юридична компанія</div>
-<div class="job-page">Сторінка 5</div>
+<div class="job-page">Страница 5</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Прасолов та партнери, Юридична компанія')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Прасолов та партнери, Юридична компанія')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Oracle-програміст</div>
 <div class="job-salary">50 000 — 100 000 ₴</div>
 <div class="job-company">УКР.ПЕЙ, ТОВ</div>
-<div class="job-page">Сторінка 5</div>
+<div class="job-page">Страница 5</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('УКР.ПЕЙ, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('УКР.ПЕЙ, ТОВ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій-міжнародник кат. СЕ (тенти, бітум, паливо)</div>
+<div class="job-salary">60 000 — 95 000 ₴</div>
+<div class="job-company">Транскомгруп, ТОВ</div>
+<div class="job-page">Страница 6</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Транскомгруп, ТОВ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Координатор бек-офісу відділу продажів</div>
 <div class="job-salary">35 000 — 45 000 ₴</div>
 <div class="job-company">Брокбрідж</div>
-<div class="job-page">Сторінка 6</div>
+<div class="job-page">Страница 6</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Брокбрідж')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Брокбрідж')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Агент з обслуговування клієнтів телефоном (вхідна лінія)</div>
 <div class="job-salary">28 843 — 33 004 ₴</div>
 <div class="job-company">ПриватБанк</div>
-<div class="job-page">Сторінка 7</div>
+<div class="job-page">Страница 7</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ПриватБанк')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ПриватБанк')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу інтернет-магазину</div>
 <div class="job-salary">25 000 — 40 000 ₴</div>
 <div class="job-company">Benefit</div>
-<div class="job-page">Сторінка 8</div>
+<div class="job-page">Страница 8</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Benefit')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Benefit')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Спеціаліст технічної підтримки / Helpdesk Enginee</div>
 <div class="job-salary">30 000 — 45 000 ₴</div>
 <div class="job-company">Tax Easy, Кадрове агенство</div>
-<div class="job-page">Сторінка 9</div>
+<div class="job-page">Страница 9</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Tax Easy, Кадрове агенство')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Tax Easy, Кадрове агенство')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу автозапчастин Japan-cars.com.ua</div>
 <div class="job-salary">45 000 — 85 000 ₴</div>
 <div class="job-company">JAPAN-CARS.com.ua</div>
-<div class="job-page">Сторінка 9</div>
+<div class="job-page">Страница 9</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('JAPAN-CARS.com.ua')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('JAPAN-CARS.com.ua')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Product, категорійний менеджер</div>
 <div class="job-salary">30 000 — 50 000 ₴</div>
 <div class="job-company">INTBOARD</div>
-<div class="job-page">Сторінка 10</div>
+<div class="job-page">Страница 10</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('INTBOARD')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('INTBOARD')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій на авто компанії (Uklon | таксі | ліцензія)</div>
+<div class="job-salary">30 000 — 40 000 ₴</div>
+<div class="job-company">DriveMe</div>
+<div class="job-page">Страница 10</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('DriveMe')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Тестувальник ПО (з реальним досвідом)</div>
 <div class="job-salary">25 000 — 40 000 ₴</div>
 <div class="job-company">УКР.ПЕЙ, ТОВ</div>
-<div class="job-page">Сторінка 11</div>
+<div class="job-page">Страница 11</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('УКР.ПЕЙ, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('УКР.ПЕЙ, ТОВ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Рекрутер з підбору викладачів (IT)</div>
+<div class="job-salary">27 000 — 35 000 ₴</div>
+<div class="job-company">GoIT</div>
+<div class="job-page">Страница 11</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('GoIT')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер інтернет-магазину</div>
 <div class="job-salary">25 000 — 35 000 ₴</div>
 <div class="job-company">ФОП Бойваленко В. Ю.</div>
-<div class="job-page">Сторінка 12</div>
+<div class="job-page">Страница 12</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ФОП Бойваленко В. Ю.')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ФОП Бойваленко В. Ю.')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Sales-менеджер (освітні послуги)</div>
 <div class="job-salary">60 000 — 120 000 ₴</div>
 <div class="job-company">Конс на Бі$</div>
-<div class="job-page">Сторінка 12</div>
+<div class="job-page">Страница 12</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Конс на Бі$')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Конс на Бі$')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">4D Construction Project Scheduler</div>
 <div class="job-salary">60 000 — 100 000 ₴</div>
 <div class="job-company">Ehvert</div>
-<div class="job-page">Сторінка 13</div>
+<div class="job-page">Страница 13</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Ehvert')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Ehvert')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Team lead marketing (Yelp, USA)</div>
 <div class="job-salary">50 000 — 60 000 ₴</div>
 <div class="job-company">Supplax</div>
-<div class="job-page">Сторінка 13</div>
+<div class="job-page">Страница 13</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Supplax')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Supplax')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Фахівець по роботі з заборгованістю (Hard Collection/31-75 днів)</div>
+<div class="job-salary">50 000 — 90 000 ₴</div>
+<div class="job-company">SelfieCredit</div>
+<div class="job-page">Страница 13</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SelfieCredit')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Фахівець з телемаркетингу</div>
 <div class="job-salary">30 000 — 35 000 ₴</div>
 <div class="job-company">SelfieCredit</div>
-<div class="job-page">Сторінка 14</div>
+<div class="job-page">Страница 14</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SelfieCredit')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SelfieCredit')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">PRODUCT OWNER (Affiliate marketing)</div>
 <div class="job-salary">80 000 — 85 000 ₴</div>
 <div class="job-company">DMND</div>
-<div class="job-page">Сторінка 14</div>
+<div class="job-page">Страница 14</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('DMND')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('DMND')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Торговий представник з авто (зоотовари)</div>
+<div class="job-salary">35 000 — 50 000 ₴</div>
+<div class="job-company">YEDNIST’ GROUP</div>
+<div class="job-page">Страница 14</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('YEDNIST’ GROUP')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Програміст BAS, BAF у Рівне</div>
 <div class="job-salary">60 000 — 80 000 ₴</div>
 <div class="job-company">Atlantmarket</div>
-<div class="job-page">Сторінка 15</div>
+<div class="job-page">Страница 15</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Atlantmarket')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Atlantmarket')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Дезінфектор, спеціаліст з ПЕСТ контролю (власне авто)</div>
+<div class="job-salary">30 000 — 45 000 ₴</div>
+<div class="job-company">Стоп! Кукарача, ТОВ</div>
+<div class="job-page">Страница 16</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Стоп! Кукарача, ТОВ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер по закупкам</div>
 <div class="job-salary">30 000 — 40 000 ₴</div>
 <div class="job-company">НОТА ТРЕЙД, ТОВ</div>
-<div class="job-page">Сторінка 16</div>
+<div class="job-page">Страница 16</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('НОТА ТРЕЙД, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('НОТА ТРЕЙД, ТОВ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер супроводу продажів (B2B, енергетичне обладнання)</div>
 <div class="job-salary">25 000 — 30 000 ₴</div>
 <div class="job-company">НОТА ТРЕЙД, ТОВ</div>
-<div class="job-page">Сторінка 16</div>
+<div class="job-page">Страница 16</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('НОТА ТРЕЙД, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('НОТА ТРЕЙД, ТОВ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Архітектор-кресляр (інтер'єрні креслення)</div>
+<div class="job-salary">50 000 — 60 000 ₴</div>
+<div class="job-company">BORISSTUDIO</div>
+<div class="job-page">Страница 16</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('BORISSTUDIO')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Аналітик (Marketing Department)</div>
 <div class="job-salary">30 000 — 35 000 ₴</div>
 <div class="job-company">PLAMIGO</div>
-<div class="job-page">Сторінка 18</div>
+<div class="job-page">Страница 18</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('PLAMIGO')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('PLAMIGO')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Спеціаліст по роботі із кредитною заборгованістю</div>
+<div class="job-salary">35 000 — 70 000 ₴</div>
+<div class="job-company">PROCENT</div>
+<div class="job-page">Страница 19</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('PROCENT')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Торговий представник з авто (ручний інструмент)</div>
+<div class="job-salary">40 000 — 60 000 ₴</div>
+<div class="job-company">Unit B</div>
+<div class="job-page">Страница 19</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Unit B')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Оздоблювач</div>
 <div class="job-salary">60 000 — 90 000 ₴</div>
 <div class="job-company">Домова служба, ТОВ</div>
-<div class="job-page">Сторінка 19</div>
+<div class="job-page">Страница 19</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Домова служба, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Домова служба, ТОВ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу (В2В) зі знанням німецької або англійської мови</div>
 <div class="job-salary">30 000 — 70 000 ₴</div>
 <div class="job-company">FLEXOGROUP</div>
-<div class="job-page">Сторінка 19</div>
+<div class="job-page">Страница 19</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('FLEXOGROUP')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('FLEXOGROUP')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій мобільної групи реагування</div>
+<div class="job-salary">12 000 — 15 000 ₴</div>
+<div class="job-company">ВЕНБЕСТ, ТОВ</div>
+<div class="job-page">Страница 19</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ВЕНБЕСТ, ТОВ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Вчитель/репетитор математики (онлайн)</div>
+<div class="job-salary">10 000 — 25 000 ₴</div>
+<div class="job-company">Mathema</div>
+<div class="job-page">Страница 21</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Mathema')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій (С/С1/Д)</div>
+<div class="job-salary">30 000 — 35 000 ₴</div>
+<div class="job-company">Посад</div>
+<div class="job-page">Страница 21</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Посад')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Digital-маркетолог/Google Ads Specialist</div>
 <div class="job-salary">65 000 — 100 000 ₴</div>
 <div class="job-company">Hay Credito</div>
-<div class="job-page">Сторінка 22</div>
+<div class="job-page">Страница 22</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Hay Credito')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Hay Credito')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Middle SEO Specialist (iGaming)</div>
 <div class="job-salary">50 000 — 70 000 ₴</div>
 <div class="job-company">Flint Group</div>
-<div class="job-page">Сторінка 23</div>
+<div class="job-page">Страница 23</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Flint Group')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Flint Group')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Team Lead Seo</div>
 <div class="job-salary">80 000 — 100 000 ₴</div>
 <div class="job-company">Flint Group</div>
-<div class="job-page">Сторінка 23</div>
+<div class="job-page">Страница 23</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Flint Group')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Flint Group')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Відеомонтажер весільних фільмів</div>
+<div class="job-salary">20 000 — 50 000 ₴</div>
+<div class="job-company">Брайд Грум Відео</div>
+<div class="job-page">Страница 23</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Брайд Грум Відео')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Стікерувальник-комплектувальник</div>
+<div class="job-salary">22 000 — 27 000 ₴</div>
+<div class="job-company">Міготін Ф.С,, ФОП</div>
+<div class="job-page">Страница 23</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Міготін Ф.С,, ФОП')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Адміністратор мобільної медичної бригади</div>
 <div class="job-salary">35 000 — 48 000 ₴</div>
 <div class="job-company">Докос медикал</div>
-<div class="job-page">Сторінка 24</div>
+<div class="job-page">Страница 24</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Докос медикал')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Докос медикал')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажів зі знанням польської В2+(Віддалено)</div>
 <div class="job-salary">55 000 — 80 000 ₴</div>
 <div class="job-company">Agentify Ltd</div>
-<div class="job-page">Сторінка 24</div>
+<div class="job-page">Страница 24</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Agentify Ltd')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Agentify Ltd')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій кат Д розвозка м.Почайна</div>
+<div class="job-salary">22 000 — 23 000 ₴</div>
+<div class="job-company">Автомобільний перевізник, ТОВ</div>
+<div class="job-page">Страница 26</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Автомобільний перевізник, ТОВ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу</div>
 <div class="job-salary">35 000 — 45 000 ₴</div>
 <div class="job-company">In-O - information technologies</div>
-<div class="job-page">Сторінка 27</div>
+<div class="job-page">Страница 27</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('In-O - information technologies')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('In-O - information technologies')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Finance System Automation Lead (BAF/BAS ERP)</div>
 <div class="job-salary">120 000 — 130 000 ₴</div>
 <div class="job-company">Ksisters</div>
-<div class="job-page">Сторінка 27</div>
+<div class="job-page">Страница 27</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Ksisters')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Ksisters')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу B2B</div>
 <div class="job-salary">30 000 — 90 000 ₴</div>
 <div class="job-company">DSN Group</div>
-<div class="job-page">Сторінка 28</div>
+<div class="job-page">Страница 28</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('DSN Group')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('DSN Group')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій на авто компанії (Uklon ) ліцензія</div>
+<div class="job-salary">30 000 — 50 000 ₴</div>
+<div class="job-company">DriveMe</div>
+<div class="job-page">Страница 28</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('DriveMe')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Інженер-конструктор (Design engineer) дистанційно</div>
+<div class="job-salary">55 000 — 65 000 ₴</div>
+<div class="job-company">GFE-Solutions, LLC</div>
+<div class="job-page">Страница 29</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('GFE-Solutions, LLC')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">HR People Partner (IT company)</div>
 <div class="job-salary">55 000 — 70 000 ₴</div>
 <div class="job-company">Personalities, HR Company</div>
-<div class="job-page">Сторінка 30</div>
+<div class="job-page">Страница 30</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Personalities, HR Company')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Personalities, HR Company')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">B2C Marketing Manager</div>
 <div class="job-salary">45 000 — 50 000 ₴</div>
 <div class="job-company">Englishdom</div>
-<div class="job-page">Сторінка 30</div>
+<div class="job-page">Страница 30</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Englishdom')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Englishdom')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу навчальних програм для підприємців</div>
 <div class="job-salary">60 000 — 100 000 ₴</div>
 <div class="job-company">Бізнес-Конструктор</div>
-<div class="job-page">Сторінка 30</div>
+<div class="job-page">Страница 30</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Бізнес-Конструктор')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Бізнес-Конструктор')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу</div>
 <div class="job-salary">50 000 — 120 000 ₴</div>
 <div class="job-company">Прасолов та партнери, Юридична компанія</div>
-<div class="job-page">Сторінка 31</div>
+<div class="job-page">Страница 31</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Прасолов та партнери, Юридична компанія')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Прасолов та партнери, Юридична компанія')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Головний бухгалтер</div>
 <div class="job-salary">65 000 — 80 000 ₴</div>
 <div class="job-company">Unifinance</div>
-<div class="job-page">Сторінка 31</div>
+<div class="job-page">Страница 31</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Unifinance')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Unifinance')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Викладач математики (онлайн)</div>
+<div class="job-salary">15 000 — 35 000 ₴</div>
+<div class="job-company">DiD, онлайн-школа математики</div>
+<div class="job-page">Страница 32</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('DiD, онлайн-школа математики')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Technical Support Representative</div>
 <div class="job-salary">42 400 — 46 800 ₴</div>
 <div class="job-company">Pexly</div>
-<div class="job-page">Сторінка 32</div>
+<div class="job-page">Страница 32</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Pexly')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Pexly')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водитель БРОНЬ категории СЕ</div>
+<div class="job-salary">70 000 — 90 000 ₴</div>
+<div class="job-company">Веліта, ПП, Фірма</div>
+<div class="job-page">Страница 32</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Веліта, ПП, Фірма')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Регіональний менеджер</div>
+<div class="job-salary">25 000 — 70 000 ₴</div>
+<div class="job-company">Горкунов А., ФЛП</div>
+<div class="job-page">Страница 32</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Горкунов А., ФЛП')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій а\м MAN категорії СЕ</div>
+<div class="job-salary">40 000 — 70 000 ₴</div>
+<div class="job-company">Абрамович С.М., ФОП</div>
+<div class="job-page">Страница 32</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Абрамович С.М., ФОП')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Помічник із прийому замовлень, часткова зайнятість</div>
 <div class="job-salary">20 000 — 24 000 ₴</div>
 <div class="job-company">Конверсїя, ТОВ</div>
-<div class="job-page">Сторінка 32</div>
+<div class="job-page">Страница 32</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Конверсїя, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Конверсїя, ТОВ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Акторка</div>
+<div class="job-salary">500 — 40 000 ₴</div>
+<div class="job-company">Кулик А.В., ФОП</div>
+<div class="job-page">Страница 32</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Кулик А.В., ФОП')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Приватний детектив, регіональний представник детективної агенції, Тернопіль</div>
 <div class="job-salary">40 000 — 50 000 ₴</div>
 <div class="job-company">Конрад, Детективна агенція</div>
-<div class="job-page">Сторінка 33</div>
+<div class="job-page">Страница 33</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Конрад, Детективна агенція')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Конрад, Детективна агенція')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Промоутер</div>
+<div class="job-salary">25 000 — 38 000 ₴</div>
+<div class="job-company">RoboCode</div>
+<div class="job-page">Страница 33</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('RoboCode')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Бухгалтер / фінансовий аналітик (дистанційно)</div>
 <div class="job-salary">20 000 — 30 000 ₴</div>
 <div class="job-company">GeoBent</div>
-<div class="job-page">Сторінка 33</div>
+<div class="job-page">Страница 33</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('GeoBent')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('GeoBent')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">International Logistics/Dispatch Support Technician in Vyshneve/Kyiv</div>
 <div class="job-salary">20 000 — 40 000 ₴</div>
 <div class="job-company">USKO Express Inc</div>
-<div class="job-page">Сторінка 34</div>
+<div class="job-page">Страница 34</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('USKO Express Inc')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('USKO Express Inc')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Media Buyer Nutra (Google/Facebook)</div>
 <div class="job-salary">100 000 — 200 000 ₴</div>
 <div class="job-company">Street Traffic</div>
-<div class="job-page">Сторінка 34</div>
+<div class="job-page">Страница 34</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Street Traffic')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Street Traffic')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Охоронник (вахта)</div>
+<div class="job-salary">16 000 — 16 000 ₴</div>
+<div class="job-company">Барбакан, ДП</div>
+<div class="job-page">Страница 34</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Барбакан, ДП')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Керівник call center (LATAM | Іспанська мова | Remote)</div>
 <div class="job-salary">40 000 — 80 000 ₴</div>
 <div class="job-company">1CallCenter</div>
-<div class="job-page">Сторінка 34</div>
+<div class="job-page">Страница 34</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('1CallCenter')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('1CallCenter')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Рекрутер зі знанням словацької, чеської мови | Віддалено</div>
 <div class="job-salary">25 000 — 36 000 ₴</div>
 <div class="job-company">1CallCenter</div>
-<div class="job-page">Сторінка 34</div>
+<div class="job-page">Страница 34</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('1CallCenter')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('1CallCenter')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Technical Support Engineer</div>
 <div class="job-salary">35 000 — 50 000 ₴</div>
 <div class="job-company">Velpox</div>
-<div class="job-page">Сторінка 35</div>
+<div class="job-page">Страница 35</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Velpox')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Velpox')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Територіальний менеджер</div>
+<div class="job-salary">20 000 — 40 000 ₴</div>
+<div class="job-company">СолоМия</div>
+<div class="job-page">Страница 35</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('СолоМия')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Няня-вихователь</div>
+<div class="job-salary">10 000 — 15 000 ₴</div>
+<div class="job-company">KIDDIE LAND</div>
+<div class="job-page">Страница 35</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('KIDDIE LAND')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водитель дальнобойщик - ЕСТЬ БРОНИРОВАНИЕ</div>
+<div class="job-salary">40 000 — 75 000 ₴</div>
+<div class="job-company">Авангард Логистик, ООО</div>
+<div class="job-page">Страница 35</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Авангард Логистик, ООО')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Оператор call центру телекомунікації</div>
 <div class="job-salary">10 000 — 35 000 ₴</div>
 <div class="job-company">SBT</div>
-<div class="job-page">Сторінка 36</div>
+<div class="job-page">Страница 36</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SBT')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SBT')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій міжнародник кат. СЕ</div>
+<div class="job-salary">80 000 — 90 000 ₴</div>
+<div class="job-company">Агронерудпром, ООО</div>
+<div class="job-page">Страница 36</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Агронерудпром, ООО')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій автобус MAN турист VW Crafter</div>
+<div class="job-salary">20 000 — 30 000 ₴</div>
+<div class="job-company">Петренко, ФОП</div>
+<div class="job-page">Страница 36</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Петренко, ФОП')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Монтажник вікон, балконів</div>
+<div class="job-salary">75 000 — 140 000 ₴</div>
+<div class="job-company">Odas / Одас</div>
+<div class="job-page">Страница 37</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Odas / Одас')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Електрозварник</div>
+<div class="job-salary">35 — 40 ₴</div>
+<div class="job-company">НТЦ Промтехдіагностика, ТОВ</div>
+<div class="job-page">Страница 37</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('НТЦ Промтехдіагностика, ТОВ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Репетитор з німецької мови</div>
+<div class="job-salary">20 000 — 50 000 ₴</div>
+<div class="job-company">Кришко, ФОП</div>
+<div class="job-page">Страница 37</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Кришко, ФОП')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій зерновозу(самоскиду)</div>
+<div class="job-salary">26 000 — 700 000 ₴</div>
+<div class="job-company">Деметра, ТОВ</div>
+<div class="job-page">Страница 38</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Деметра, ТОВ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджера з продажу мастильних матеріалів</div>
 <div class="job-salary">15 000 — 45 000 ₴</div>
 <div class="job-company">АВТОБАН ОІЛ, ТОВ</div>
-<div class="job-page">Сторінка 38</div>
+<div class="job-page">Страница 38</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('АВТОБАН ОІЛ, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('АВТОБАН ОІЛ, ТОВ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій категорії СЕ</div>
+<div class="job-salary">65 000 — 70 000 ₴</div>
+<div class="job-company">ГАЛАРГ</div>
+<div class="job-page">Страница 38</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ГАЛАРГ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Рієлтор</div>
+<div class="job-salary">50 000 — 80 000 ₴</div>
+<div class="job-company">Премьер, АН</div>
+<div class="job-page">Страница 39</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Премьер, АН')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Лідогенератор B2B Lead Generation Specialist SaaS, Instagram</div>
 <div class="job-salary">15 000 — 30 000 ₴</div>
 <div class="job-company">Богуславська Л.В., ФОП</div>
-<div class="job-page">Сторінка 39</div>
+<div class="job-page">Страница 39</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Богуславська Л.В., ФОП')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Богуславська Л.В., ФОП')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Дистанційно</div>
 <div class="job-salary">20 000 — 35 000 ₴</div>
 <div class="job-company">Все для ремонту та будівництва</div>
-<div class="job-page">Сторінка 39</div>
+<div class="job-page">Страница 39</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Все для ремонту та будівництва')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Все для ремонту та будівництва')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Оператор з обробки зображень</div>
 <div class="job-salary">7 040 — 8 500 ₴</div>
 <div class="job-company">ДАТАХАБ. АІ, ТОВ</div>
-<div class="job-page">Сторінка 39</div>
+<div class="job-page">Страница 39</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ДАТАХАБ. АІ, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ДАТАХАБ. АІ, ТОВ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Майстер з ремонту ПК</div>
 <div class="job-salary">30 000 — 70 000 ₴</div>
 <div class="job-company">КомПом</div>
-<div class="job-page">Сторінка 39</div>
+<div class="job-page">Страница 39</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('КомПом')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('КомПом')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Монтажник опалення</div>
+<div class="job-salary">45 000 — 80 000 ₴</div>
+<div class="job-company">Газда-Сервіс, ТОВ</div>
+<div class="job-page">Страница 39</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Газда-Сервіс, ТОВ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Спеціаліст з пошуку та обробки даних / Data Research (зі знанням англійської)</div>
 <div class="job-salary">14 400 — 27 200 ₴</div>
 <div class="job-company">SSCU Data Acquisition and Validation</div>
-<div class="job-page">Сторінка 40</div>
+<div class="job-page">Страница 40</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SSCU Data Acquisition and Validation')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SSCU Data Acquisition and Validation')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу</div>
 <div class="job-salary">50 000 — 80 000 ₴</div>
 <div class="job-company">ТОВ ФРЕШ МІЛК</div>
-<div class="job-page">Сторінка 40</div>
+<div class="job-page">Страница 40</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ТОВ ФРЕШ МІЛК')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ТОВ ФРЕШ МІЛК')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">AutoCad technician</div>
 <div class="job-salary">30 000 — 30 000 ₴</div>
 <div class="job-company">Av interiors</div>
-<div class="job-page">Сторінка 40</div>
+<div class="job-page">Страница 40</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Av interiors')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Av interiors')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Відео-креатор / Обличчя бренду (TikTok / Instagram)</div>
 <div class="job-salary">25 000 — 35 000 ₴</div>
 <div class="job-company">It Rage</div>
-<div class="job-page">Сторінка 40</div>
+<div class="job-page">Страница 40</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('It Rage')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('It Rage')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій категорії СЕ</div>
+<div class="job-salary">50 000 — 60 000 ₴</div>
+<div class="job-company">Буча-Логістик, ТОВ</div>
+<div class="job-page">Страница 40</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Буча-Логістик, ТОВ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Регіональний менеджер (Київська, Житомирська, Рівненська обл. Луцьк)</div>
+<div class="job-salary">60 000 — 80 000 ₴</div>
+<div class="job-company">Оптичний Клуб</div>
+<div class="job-page">Страница 40</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Оптичний Клуб')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Media buyer</div>
 <div class="job-salary">40 000 — 80 000 ₴</div>
 <div class="job-company">Avion</div>
-<div class="job-page">Сторінка 41</div>
+<div class="job-page">Страница 41</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Avion')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Avion')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу</div>
 <div class="job-salary">25 000 — 60 000 ₴</div>
 <div class="job-company">Комфорт текс</div>
-<div class="job-page">Сторінка 41</div>
+<div class="job-page">Страница 41</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Комфорт текс')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Комфорт текс')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій-кур'єр</div>
+<div class="job-salary">20 000 — 30 000 ₴</div>
+<div class="job-company">Компания не указана</div>
+<div class="job-page">Страница 41</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій вантажівки кат Е</div>
+<div class="job-salary">50 000 — 75 000 ₴</div>
+<div class="job-company">Токар Ю.В., ФОП</div>
+<div class="job-page">Страница 41</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Токар Ю.В., ФОП')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу</div>
 <div class="job-salary">35 000 — 65 000 ₴</div>
 <div class="job-company">Cheffcall</div>
-<div class="job-page">Сторінка 41</div>
+<div class="job-page">Страница 41</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Cheffcall')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Cheffcall')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій кат. С на самоскид (MAN, Skania, Daf)</div>
+<div class="job-salary">95 000 — 120 000 ₴</div>
+<div class="job-company">КОНСТАНТА-СТРОЙ, ТОВ, НВФ</div>
+<div class="job-page">Страница 42</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('КОНСТАНТА-СТРОЙ, ТОВ, НВФ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Бухгалтер</div>
 <div class="job-salary">40 000 — 120 000 ₴</div>
 <div class="job-company">КОНСТАНТА-СТРОЙ, ТОВ, НВФ</div>
-<div class="job-page">Сторінка 42</div>
+<div class="job-page">Страница 42</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('КОНСТАНТА-СТРОЙ, ТОВ, НВФ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('КОНСТАНТА-СТРОЙ, ТОВ, НВФ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Автокрановщик автокрана XCMG, Zoomlion (25, 30, 50 т)</div>
 <div class="job-salary">95 000 — 140 000 ₴</div>
 <div class="job-company">КОНСТАНТА-СТРОЙ, ТОВ, НВФ</div>
-<div class="job-page">Сторінка 42</div>
+<div class="job-page">Страница 42</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('КОНСТАНТА-СТРОЙ, ТОВ, НВФ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('КОНСТАНТА-СТРОЙ, ТОВ, НВФ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій кат. С, Е на тягач (MAN TGX 33.480, трал, бортова платформа)</div>
+<div class="job-salary">110 000 — 150 000 ₴</div>
+<div class="job-company">КОНСТАНТА-СТРОЙ, ТОВ, НВФ</div>
+<div class="job-page">Страница 42</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('КОНСТАНТА-СТРОЙ, ТОВ, НВФ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Freight Dispatcher (Dry Van, Reefer, USA)</div>
 <div class="job-salary">180 000 — 330 000 ₴</div>
 <div class="job-company">LNG Holding</div>
-<div class="job-page">Сторінка 42</div>
+<div class="job-page">Страница 42</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('LNG Holding')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('LNG Holding')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Будівельник оптоволоконних мереж</div>
 <div class="job-salary">40 000 — 60 000 ₴</div>
 <div class="job-company">Провайд</div>
-<div class="job-page">Сторінка 42</div>
+<div class="job-page">Страница 42</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Провайд')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Провайд')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Бізнес- асистент (USA)</div>
 <div class="job-salary">34 000 — 56 000 ₴</div>
 <div class="job-company">Supplax</div>
-<div class="job-page">Сторінка 43</div>
+<div class="job-page">Страница 43</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Supplax')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Supplax')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Фахівець контакт-центру зі знанням англійської мови (дистанційно)</div>
 <div class="job-salary">21 000 — 25 000 ₴</div>
 <div class="job-company">Piraeus Bank Ukraine</div>
-<div class="job-page">Сторінка 43</div>
+<div class="job-page">Страница 43</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Piraeus Bank Ukraine')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Piraeus Bank Ukraine')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Слюсар-монтажник</div>
+<div class="job-salary">35 000 — 50 000 ₴</div>
+<div class="job-company">БОЕЗ УКРАЇНА, ТОВ</div>
+<div class="job-page">Страница 43</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('БОЕЗ УКРАЇНА, ТОВ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Лідогенератор який/яка грає в теніс або падел</div>
 <div class="job-salary">30 000 — 50 000 ₴</div>
 <div class="job-company">Imperia HR</div>
-<div class="job-page">Сторінка 44</div>
+<div class="job-page">Страница 44</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Imperia HR')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Imperia HR')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Віддалена робота</div>
 <div class="job-salary">30 000 — 60 000 ₴</div>
 <div class="job-company">Продаж посуду та текстилю</div>
-<div class="job-page">Сторінка 44</div>
+<div class="job-page">Страница 44</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Продаж посуду та текстилю')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Продаж посуду та текстилю')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">1 день тому</div>
 <div class="job-salary">25 000 — 50 000 ₴</div>
 <div class="job-company">Попандопуло Т.В., ФОП</div>
-<div class="job-page">Сторінка 45</div>
+<div class="job-page">Страница 45</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Попандопуло Т.В., ФОП')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Попандопуло Т.В., ФОП')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу</div>
 <div class="job-salary">40 000 — 65 000 ₴</div>
 <div class="job-company">Cheffcall</div>
-<div class="job-page">Сторінка 45</div>
+<div class="job-page">Страница 45</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Cheffcall')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Cheffcall')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу</div>
 <div class="job-salary">20 000 — 40 000 ₴</div>
 <div class="job-company">TattooBestShop</div>
-<div class="job-page">Сторінка 45</div>
+<div class="job-page">Страница 45</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('TattooBestShop')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('TattooBestShop')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу (Малиновський р-н)</div>
 <div class="job-salary">40 000 — 100 000 ₴</div>
 <div class="job-company">Мобільна Оптика</div>
-<div class="job-page">Сторінка 45</div>
+<div class="job-page">Страница 45</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Мобільна Оптика')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Мобільна Оптика')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер по роботі з клієнтами</div>
 <div class="job-salary">18 000 — 26 000 ₴</div>
 <div class="job-company">Efrat</div>
-<div class="job-page">Сторінка 46</div>
+<div class="job-page">Страница 46</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Efrat')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Efrat')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер із розвитку партнерів (B2B)</div>
 <div class="job-salary">15 000 — 30 000 ₴</div>
 <div class="job-company">МиаТис</div>
-<div class="job-page">Сторінка 46</div>
+<div class="job-page">Страница 46</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('МиаТис')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('МиаТис')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Контент-креатор TikTok / SMM TikTok / Faceless TikTok Content Creator</div>
 <div class="job-salary">15 000 — 25 000 ₴</div>
 <div class="job-company">Alpenor</div>
-<div class="job-page">Сторінка 46</div>
+<div class="job-page">Страница 46</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Alpenor')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Alpenor')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Бригада по монтажу вікон</div>
+<div class="job-salary">30 000 — 60 000 ₴</div>
+<div class="job-company">Beer Time</div>
+<div class="job-page">Страница 46</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Beer Time')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Медичний представник — онлайн-візити, вільний графік | «Інститут Фарм Промоції»</div>
 <div class="job-salary">40 000 — 50 000 ₴</div>
 <div class="job-company">ІНСТИТУТ ФАРМ ПРОМОЦІЇ</div>
-<div class="job-page">Сторінка 46</div>
+<div class="job-page">Страница 46</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ІНСТИТУТ ФАРМ ПРОМОЦІЇ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ІНСТИТУТ ФАРМ ПРОМОЦІЇ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Офіцер групи розвідки-капітан</div>
 <div class="job-salary">20 000 — 120 000 ₴</div>
 <div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
-<div class="job-page">Сторінка 47</div>
+<div class="job-page">Страница 47</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Бухгалтер</div>
 <div class="job-salary">23 000 — 27 000 ₴</div>
 <div class="job-company">Lawyer Accountant</div>
-<div class="job-page">Сторінка 47</div>
+<div class="job-page">Страница 47</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Lawyer Accountant')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Lawyer Accountant')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Офіцер відділення оперативного управління-майор</div>
 <div class="job-salary">20 000 — 120 000 ₴</div>
 <div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
-<div class="job-page">Сторінка 47</div>
+<div class="job-page">Страница 47</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Старший науковий співробітник НДВ НДУ-підполковник</div>
 <div class="job-salary">20 000 — 120 000 ₴</div>
 <div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
-<div class="job-page">Сторінка 47</div>
+<div class="job-page">Страница 47</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Заступник начальника факультету з навчальної та наукової роботи- начальник навчальної частини</div>
 <div class="job-salary">20 000 — 120 000 ₴</div>
 <div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
-<div class="job-page">Сторінка 47</div>
+<div class="job-page">Страница 47</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Начальник розвідки штабу -майор</div>
 <div class="job-salary">20 000 — 120 000 ₴</div>
 <div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
-<div class="job-page">Сторінка 47</div>
+<div class="job-page">Страница 47</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Доцент-пiдполковник</div>
 <div class="job-salary">20 000 — 120 000 ₴</div>
 <div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
-<div class="job-page">Сторінка 47</div>
+<div class="job-page">Страница 47</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Старший викладач-пiдполковник</div>
+<div class="job-salary">20 000 — 120 000 ₴</div>
+<div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
+<div class="job-page">Страница 47</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Викладач-майор</div>
+<div class="job-salary">20 000 — 120 000 ₴</div>
+<div class="job-company">Корабельний районний територіальний центр комплектування та соціальної підтримки</div>
+<div class="job-page">Страница 47</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Корабельний районний територіальний центр комплектування та соціальної підтримки')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Прибиральниця клінер</div>
 <div class="job-salary">18 000 — 28 000 ₴</div>
 <div class="job-company">Clean force</div>
-<div class="job-page">Сторінка 48</div>
+<div class="job-page">Страница 48</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Clean force')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Clean force')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Вчитель української мови та літератури</div>
 <div class="job-salary">10 000 — 25 000 ₴</div>
 <div class="job-company">Кириченко Ю., ФОП</div>
-<div class="job-page">Сторінка 48</div>
+<div class="job-page">Страница 48</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Кириченко Ю., ФОП')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Кириченко Ю., ФОП')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій вантажівки</div>
+<div class="job-salary">30 000 — 50 000 ₴</div>
+<div class="job-company">Агропроммонтаж</div>
+<div class="job-page">Страница 48</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Агропроммонтаж')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Архітектор</div>
+<div class="job-salary">20 000 — 40 000 ₴</div>
+<div class="job-company">Воротілін, ФОП</div>
+<div class="job-page">Страница 49</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Воротілін, ФОП')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Логіст, менеджер з транспортної логістики</div>
 <div class="job-salary">28 000 — 30 000 ₴</div>
 <div class="job-company">Zakaz.ua</div>
-<div class="job-page">Сторінка 49</div>
+<div class="job-page">Страница 49</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Zakaz.ua')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Zakaz.ua')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Customer Support Representative</div>
 <div class="job-salary">38 000 — 45 000 ₴</div>
 <div class="job-company">Helpware</div>
-<div class="job-page">Сторінка 50</div>
+<div class="job-page">Страница 50</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Helpware')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Helpware')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">SMM Project Manager</div>
 <div class="job-salary">25 000 — 35 000 ₴</div>
 <div class="job-company">BLACK SMM Agency</div>
-<div class="job-page">Сторінка 50</div>
+<div class="job-page">Страница 50</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('BLACK SMM Agency')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('BLACK SMM Agency')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій на MAN (5 т, доставка по точкам)</div>
+<div class="job-salary">48 000 — 65 000 ₴</div>
+<div class="job-company">Форт-Бир-Плюс, ООО</div>
+<div class="job-page">Страница 50</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Форт-Бир-Плюс, ООО')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Оператор на вхідну лінію</div>
 <div class="job-salary">27 000 — 30 000 ₴</div>
 <div class="job-company">CreditKasa</div>
-<div class="job-page">Сторінка 50</div>
+<div class="job-page">Страница 50</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('CreditKasa')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('CreditKasa')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Викладач англійської мови</div>
+<div class="job-salary">15 000 — 35 000 ₴</div>
+<div class="job-company">AntiSchool Online</div>
+<div class="job-page">Страница 50</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('AntiSchool Online')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">English Teacher</div>
 <div class="job-salary">15 000 — 30 000 ₴</div>
 <div class="job-company">AntiSchool Online</div>
-<div class="job-page">Сторінка 50</div>
+<div class="job-page">Страница 50</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('AntiSchool Online')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('AntiSchool Online')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу (В2В, теплий трафік)</div>
 <div class="job-salary">20 000 — 45 000 ₴</div>
 <div class="job-company">INTBOARD</div>
-<div class="job-page">Сторінка 51</div>
+<div class="job-page">Страница 51</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('INTBOARD')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('INTBOARD')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу в онлайн-школу англійської</div>
 <div class="job-salary">35 000 — 70 000 ₴</div>
 <div class="job-company">Study Less</div>
-<div class="job-page">Сторінка 51</div>
+<div class="job-page">Страница 51</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Study Less')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Study Less')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Віддалена робота</div>
 <div class="job-salary">13 500 — 30 300 ₴</div>
 <div class="job-company">TP Ukraine</div>
-<div class="job-page">Сторінка 51</div>
+<div class="job-page">Страница 51</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('TP Ukraine')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('TP Ukraine')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">HR Assistant/Recruiter (Remote)</div>
 <div class="job-salary">35 000 — 50 000 ₴</div>
 <div class="job-company">LNG Holding</div>
-<div class="job-page">Сторінка 52</div>
+<div class="job-page">Страница 52</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('LNG Holding')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('LNG Holding')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Віддалена робота</div>
 <div class="job-salary">45 000 — 70 000 ₴</div>
 <div class="job-company">ВБА, ООО</div>
-<div class="job-page">Сторінка 52</div>
+<div class="job-page">Страница 52</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ВБА, ООО')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ВБА, ООО')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Адміністратор, організатор турнірів (Падел-клуб, padel tennis, теніс)</div>
 <div class="job-salary">30 000 — 50 000 ₴</div>
 <div class="job-company">Imperia HR</div>
-<div class="job-page">Сторінка 53</div>
+<div class="job-page">Страница 53</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Imperia HR')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Imperia HR')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Recruiter</div>
 <div class="job-salary">25 000 — 32 000 ₴</div>
 <div class="job-company">MK:translations</div>
-<div class="job-page">Сторінка 54</div>
+<div class="job-page">Страница 54</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('MK:translations')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('MK:translations')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Фахівець з відділу кадрів</div>
 <div class="job-salary">10 000 — 15 000 ₴</div>
 <div class="job-company">BigFishCompany</div>
-<div class="job-page">Сторінка 54</div>
+<div class="job-page">Страница 54</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('BigFishCompany')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('BigFishCompany')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій категорії С на авто з краном маніпулятором</div>
+<div class="job-salary">60 000 — 75 000 ₴</div>
+<div class="job-company">Дон-Транс Логістик, ТОВ</div>
+<div class="job-page">Страница 54</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Дон-Транс Логістик, ТОВ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Вчитель математики</div>
 <div class="job-salary">18 000 — 36 000 ₴</div>
 <div class="job-company">Математична Школа Чорного</div>
-<div class="job-page">Сторінка 54</div>
+<div class="job-page">Страница 54</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Математична Школа Чорного')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Математична Школа Чорного')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Оператор чату</div>
 <div class="job-salary">25 000 — 28 000 ₴</div>
 <div class="job-company">Vakantro</div>
-<div class="job-page">Сторінка 54</div>
+<div class="job-page">Страница 54</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Vakantro')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Vakantro')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">UI/UX Designer</div>
 <div class="job-salary">20 000 — 35 000 ₴</div>
 <div class="job-company">Bravilo</div>
-<div class="job-page">Сторінка 54</div>
+<div class="job-page">Страница 54</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Bravilo')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Bravilo')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Python Developer</div>
 <div class="job-salary">25 000 — 30 000 ₴</div>
 <div class="job-company">Bravilo</div>
-<div class="job-page">Сторінка 54</div>
+<div class="job-page">Страница 54</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Bravilo')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Bravilo')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій у таксі на авто компанії</div>
+<div class="job-salary">35 000 — 55 000 ₴</div>
+<div class="job-company">Procars</div>
+<div class="job-page">Страница 55</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Procars')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Фахівець з організації навчальної роботи</div>
 <div class="job-salary">22 000 — 22 000 ₴</div>
 <div class="job-company">Харківський університет, ТОВ</div>
-<div class="job-page">Сторінка 55</div>
+<div class="job-page">Страница 55</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Харківський університет, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Харківський університет, ТОВ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Викладач англійської мови</div>
+<div class="job-salary">40 000 — 60 000 ₴</div>
+<div class="job-company">BuildUp School</div>
+<div class="job-page">Страница 55</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('BuildUp School')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій вантажного авто</div>
+<div class="job-salary">50 000 — 100 000 ₴</div>
+<div class="job-company">Фін-Агротрейд</div>
+<div class="job-page">Страница 55</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Фін-Агротрейд')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Account Manager (100% Remote • No Cold Calls)</div>
 <div class="job-salary">36 000 — 55 000 ₴</div>
 <div class="job-company">Компания Keyapp</div>
-<div class="job-page">Сторінка 55</div>
+<div class="job-page">Страница 55</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Компания Keyapp')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Компания Keyapp')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу, В2В</div>
 <div class="job-salary">15 000 — 40 000 ₴</div>
 <div class="job-company">GURTOVA</div>
-<div class="job-page">Сторінка 56</div>
+<div class="job-page">Страница 56</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('GURTOVA')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('GURTOVA')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Редактор стрічки новин</div>
+<div class="job-salary">22 000 — 27 000 ₴</div>
+<div class="job-company">Главком</div>
+<div class="job-page">Страница 56</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Главком')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій кат В</div>
+<div class="job-salary">35 000 — 70 000 ₴</div>
+<div class="job-company">Квашук М., ФОП</div>
+<div class="job-page">Страница 56</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Квашук М., ФОП')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Віддалена робота</div>
 <div class="job-salary">7 000 — 18 000 ₴</div>
 <div class="job-company">Ліпісівіцька А.О., ФОП</div>
-<div class="job-page">Сторінка 56</div>
+<div class="job-page">Страница 56</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Ліпісівіцька А.О., ФОП')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Ліпісівіцька А.О., ФОП')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу</div>
 <div class="job-salary">8 000 — 15 000 ₴</div>
 <div class="job-company">ALOHA Language School</div>
-<div class="job-page">Сторінка 56</div>
+<div class="job-page">Страница 56</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ALOHA Language School')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ALOHA Language School')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Інженер ВТВ (виробничо-технічний віддл)</div>
 <div class="job-salary">40 000 — 40 000 ₴</div>
 <div class="job-company">ЮММА, БУДІВЕЛЬНА КОМПАНІЯ</div>
-<div class="job-page">Сторінка 56</div>
+<div class="job-page">Страница 56</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ЮММА, БУДІВЕЛЬНА КОМПАНІЯ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('ЮММА, БУДІВЕЛЬНА КОМПАНІЯ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Кравчиня жіночого одягу / Надомниця</div>
 <div class="job-salary">25 000 — 30 000 ₴</div>
 <div class="job-company">SOLO</div>
-<div class="job-page">Сторінка 57</div>
+<div class="job-page">Страница 57</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SOLO')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SOLO')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Бізнес-аналітик із ЕРП-систем, впроваджувач. (ІТ)</div>
 <div class="job-salary">50 000 — 80 000 ₴</div>
 <div class="job-company">Комплексне управління бізнес-процесами, ТОВ</div>
-<div class="job-page">Сторінка 57</div>
+<div class="job-page">Страница 57</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Комплексне управління бізнес-процесами, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Комплексне управління бізнес-процесами, ТОВ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій кат В</div>
+<div class="job-salary">100 000 — 130 000 ₴</div>
+<div class="job-company">VKING TRANS</div>
+<div class="job-page">Страница 57</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('VKING TRANS')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу по телефону</div>
 <div class="job-salary">25 000 — 50 000 ₴</div>
 <div class="job-company">Схейбал Л.П., ФОП</div>
-<div class="job-page">Сторінка 57</div>
+<div class="job-page">Страница 57</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Схейбал Л.П., ФОП')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Схейбал Л.П., ФОП')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">ВОДІЙ ТІР</div>
+<div class="job-salary">80 000 — 120 000 ₴</div>
+<div class="job-company">Будінвест ІТ</div>
+<div class="job-page">Страница 57</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Будінвест ІТ')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Project manager shop Etsy</div>
 <div class="job-salary">15 000 — 30 000 ₴</div>
 <div class="job-company">Носко, ФОП</div>
-<div class="job-page">Сторінка 57</div>
+<div class="job-page">Страница 57</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Носко, ФОП')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Носко, ФОП')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Водій на авто фірми, таксі</div>
+<div class="job-salary">40 000 — 50 000 ₴</div>
+<div class="job-company">Агро Нова Груп</div>
+<div class="job-page">Страница 57</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Агро Нова Груп')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Віддалена робота</div>
 <div class="job-salary">24 000 — 25 750 ₴</div>
 <div class="job-company">STV group</div>
-<div class="job-page">Сторінка 58</div>
+<div class="job-page">Страница 58</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('STV group')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('STV group')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Маркетолог</div>
 <div class="job-salary">51 000 — 60 000 ₴</div>
 <div class="job-company">Intelligent Solution</div>
-<div class="job-page">Сторінка 58</div>
+<div class="job-page">Страница 58</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Intelligent Solution')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Intelligent Solution')">Чёрный список</button></div>
 </div><div class="job-card ">
 <div class="job-info">
 <div class="job-title">Спеціаліст технічної підтримки (французька)</div>
 <div class="job-salary">35 000 — 45 000 ₴</div>
 <div class="job-company">Техно Трейд КС, ТОВ</div>
-<div class="job-page">Сторінка 59</div>
+<div class="job-page">Страница 59</div>
 </div>
-<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Техно Трейд КС, ТОВ')">Чорний список</button></div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Техно Трейд КС, ТОВ')">Чёрный список</button></div>
+</div><div class="job-card red-zone">
+<div class="job-info">
+<div class="job-title">Фахівець по стягненню заборгованості (Soft Collection/ 4-30 днів)</div>
+<div class="job-salary">50 000 — 80 000 ₴</div>
+<div class="job-company">SelfieCredit</div>
+<div class="job-page">Страница 59</div>
+</div>
+<div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('SelfieCredit')">Чёрный список</button></div>
 </div></div>
 <script>
 let currentFilter = 'clean';
@@ -1092,16 +1597,39 @@ function setFilter(f, btn) {
   renderJobs();
 }
 function renderJobs() {
+  const search = document.querySelector('.search') ? document.querySelector('.search').value.toLowerCase() : '';
   const container = document.getElementById('jobs');
   const cards = container.querySelectorAll('.job-card');
+  let shown = 0;
   cards.forEach(c => {
     const isRed = c.classList.contains('red-zone');
     const isBlack = c.classList.contains('blacklisted');
-    if (currentFilter === 'clean' && (isRed || isBlack)) { c.style.display = 'none'; return; }
-    if (currentFilter === 'red' && !isRed) { c.style.display = 'none'; return; }
-    if (currentFilter === 'blacklisted' && !isBlack) { c.style.display = 'none'; return; }
-    c.style.display = '';
+    const title = c.querySelector('.job-title').textContent.toLowerCase();
+    const company = c.querySelector('.job-company').textContent.toLowerCase();
+    let show = true;
+    if (currentFilter === 'clean' && (isRed || isBlack)) show = false;
+    if (currentFilter === 'red' && !isRed) show = false;
+    if (currentFilter === 'blacklisted' && !isBlack) show = false;
+    if (search && !title.includes(search) && !company.includes(search)) show = false;
+    c.style.display = show ? '' : 'none';
+    if (show) shown++;
   });
+  const badge = document.getElementById('showing');
+  if (badge) badge.textContent = shown + ' / ' + cards.length;
 }
+function blacklist(company) {
+  let bl = [];
+  try { bl = JSON.parse(localStorage.getItem('blacklist') || '[]'); } catch {}
+  if (!bl.includes(company)) { bl.push(company); localStorage.setItem('blacklist', JSON.stringify(bl)); }
+  renderJobs();
+}
+function restore(company) {
+  let bl = [];
+  try { bl = JSON.parse(localStorage.getItem('blacklist') || '[]'); } catch {}
+  bl = bl.filter(c => c !== company);
+  localStorage.setItem('blacklist', JSON.stringify(bl));
+  renderJobs();
+}
+renderJobs();
 </script>
 </body></html>
