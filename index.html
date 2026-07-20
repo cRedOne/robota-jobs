@@ -44,11 +44,12 @@ h1{color:#a0a0c0;margin-bottom:5px;font-size:28px}
 <div class="stat" style="color:#666"><b>0</b> чорний список</div>
 </div>
 <div class="filters">
-<a href="jobs-view.html?filter=clean">Чисті (129)</a>
-<a href="jobs-view.html?filter=all">Всі (192)</a>
-<a href="jobs-view.html?filter=red">Червоні (63)</a>
-<a href="jobs-view.html?filter=blacklisted">Чорний список (0)</a>
+<button class="active" onclick="setFilter('clean',this)">Чисті (129)</button>
+<button onclick="setFilter('all',this)">Всі (192)</button>
+<button onclick="setFilter('red',this)">Червоні (63)</button>
+<button onclick="setFilter('blacklisted',this)">Чорний список (0)</button>
 </div>
+<div id="jobs">
 <div class="job-card ">
 <div class="job-info">
 <div class="job-title">Менеджер з продажу зі знанням англійської мови</div>
@@ -1081,4 +1082,26 @@ h1{color:#a0a0c0;margin-bottom:5px;font-size:28px}
 <div class="job-page">Сторінка 59</div>
 </div>
 <div class="job-actions"><button class="btn btn-blacklist" onclick="blacklist('Техно Трейд КС, ТОВ')">Чорний список</button></div>
-</div></body></html>
+</div></div>
+<script>
+let currentFilter = 'clean';
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderJobs();
+}
+function renderJobs() {
+  const container = document.getElementById('jobs');
+  const cards = container.querySelectorAll('.job-card');
+  cards.forEach(c => {
+    const isRed = c.classList.contains('red-zone');
+    const isBlack = c.classList.contains('blacklisted');
+    if (currentFilter === 'clean' && (isRed || isBlack)) { c.style.display = 'none'; return; }
+    if (currentFilter === 'red' && !isRed) { c.style.display = 'none'; return; }
+    if (currentFilter === 'blacklisted' && !isBlack) { c.style.display = 'none'; return; }
+    c.style.display = '';
+  });
+}
+</script>
+</body></html>
